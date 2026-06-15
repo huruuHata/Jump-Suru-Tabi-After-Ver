@@ -1,0 +1,76 @@
+{
+  "Block": 
+  {
+    "Row": 12,
+    "Col": 12,
+    "ChipCol": 5
+  },
+  
+  "Image":
+  {
+    "Width": 64,
+    "Height": 64
+  },
+
+  "Draw": 
+  {
+    "Width": 64,
+    "Height": 64
+  },
+
+  "Texture": 
+  {
+    "White": "Resource\\Texture\\Game\\Stage\\StageWhite.png",
+    "Black": "Resource\\Texture\\Game\\Stage\\StageBlack.png"
+  },
+
+  "WhiteStage": 
+  [
+    "Resource\\Data\\Text\\Map\\WhiteStage\\map1.txt",
+    "Resource\\Data\\Text\\Map\\WhiteStage\\map2.txt",
+    "Resource\\Data\\Text\\Map\\WhiteStage\\map3.txt",
+    "Resource\\Data\\Text\\Map\\WhiteStage\\map4.txt",
+    "Resource\\Data\\Text\\Map\\WhiteStage\\map5.txt",
+    "Resource\\Data\\Text\\Map\\WhiteStage\\map6.txt",
+    "Resource\\Data\\Text\\Map\\WhiteStage\\map7.txt",
+    "Resource\\Data\\Text\\Map\\WhiteStage\\map8.txt",
+    "Resource\\Data\\Text\\Map\\WhiteStage\\map9.txt",
+    "Resource\\Data\\Text\\Map\\WhiteStage\\map10.txt"
+  ],
+
+  "BlackStage":
+   [
+    "Resource\\Data\\Text\\Map\\BlackStage\\map11.txt",
+    "Resource\\Data\\Text\\Map\\BlackStage\\map12.txt",
+    "Resource\\Data\\Text\\Map\\BlackStage\\map13.txt",
+    "Resource\\Data\\Text\\Map\\BlackStage\\map14.txt",
+    "Resource\\Data\\Text\\Map\\BlackStage\\map15.txt",
+    "Resource\\Data\\Text\\Map\\BlackStage\\map16.txt",
+    "Resource\\Data\\Text\\Map\\BlackStage\\map17.txt",
+    "Resource\\Data\\Text\\Map\\BlackStage\\map18.txt",
+    "Resource\\Data\\Text\\Map\\BlackStage\\map19.txt",
+    "Resource\\Data\\Text\\Map\\BlackStage\\map20.txt"
+  ],
+
+  "BuildStage": "Resource\\Data\\Text\\Map\\mapBuildMode.txt",
+
+  "Back": 
+  {
+    "Image": {
+      "Width": 1280,
+      "Height": 960
+    },
+
+    "Draw": {
+      "Width": 768,
+      "Height": 576
+    },
+
+    "Position": {
+      "x": 0,
+      "y": 0
+    },
+
+    "Texture": "Resource\\Texture\\Game\\WhiteBack.png"
+  }
+}

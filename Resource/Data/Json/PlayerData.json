@@ -1,0 +1,33 @@
+{
+  "Position": {
+    "x": 0,
+    "y": 0
+  },
+
+  "Image": {
+    "Width": 64,
+    "Height": 64
+  },
+
+   "Draw" :{
+    "Width": 64,
+    "Height": 64
+  },
+
+  "Texture": {
+    "White": "Resource\\Texture\\Game\\Player\\WhiteChara.png",
+    "Black": "Resource\\Texture\\Game\\Player\\BlackChara.png",
+
+    "Num": 2
+  },
+
+  "Speed": {
+    "Move": 400,
+    "Jump": 360
+  },
+
+  "JumpPower": {
+    "White": 8,
+    "Black":  24
+  }
+}
