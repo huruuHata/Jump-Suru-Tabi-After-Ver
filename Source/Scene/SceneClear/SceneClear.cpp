@@ -36,7 +36,7 @@ SceneClear::~SceneClear()
 //=============================================================================
 void SceneClear::Start()
 {
-
+	m_setting.SceneResourceSetting(m_pEngine, SCENE_CLEAR);
 }
 
 //=============================================================================
@@ -44,7 +44,19 @@ void SceneClear::Start()
 //=============================================================================
 void SceneClear::Update()
 {
+	m_clearUI.Update(m_pEngine);
 
+	if (m_pEngine->GetKeyStateSync(DIK_RETURN))
+	{
+		if (m_clearUI.IsNextStageDisplay())
+		{
+			m_nowSceneData.Set(SCENE_GAME);
+		}
+		else if (m_clearUI.IsClearTelopDropFinish())
+		{
+			m_clearUI.SetNextStageDisplayTrue();
+		}
+	}
 }
 
 //=============================================================================
@@ -54,6 +66,8 @@ void SceneClear::Draw()
 {
 	m_pEngine->SpriteBegin();
 
+	m_clearUI.Draw(m_pEngine);
+
 	m_pEngine->SpriteEnd();
 }
 
@@ -62,7 +76,7 @@ void SceneClear::Draw()
 //=============================================================================
 void SceneClear::Exit()
 {
-
+	m_setting.SceneResourceRelease(m_pEngine);
 }
 
 //=============================================================================

@@ -22,7 +22,7 @@ public:
 
 protected:
 
-	void BaseUI::Draw(Engine* pEngine, const UIData& ui);
+	void Draw(Engine* pEngine, const UIData& ui);
 
 	//UIData, json, キー
 	void InitializeImage(UIData& ui_data, json& data, const std::string key);

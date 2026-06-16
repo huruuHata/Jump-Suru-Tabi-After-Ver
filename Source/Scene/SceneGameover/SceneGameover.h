@@ -10,6 +10,8 @@
 
 #include "..\\Scene\\Scene.h"
 
+#include "..\\..\\Object\\Engine\\ResourceSetting\\ResourceSetting.h"
+
 class SceneGameover : public Scene
 {
 public:
@@ -63,5 +65,7 @@ public:
 #endif
 
 private:
+
+	ResourceSetting& m_setting = ResourceSetting::getInstance();
 
 };

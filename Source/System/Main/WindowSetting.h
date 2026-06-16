@@ -28,7 +28,7 @@ namespace WindowSetting
 	constexpr int WINDOW_HEIGHT = 576;
 
 	//ウィンドウタイトル名（ゲーム名に変更すること）
-	constexpr char* WINDOW_TITLE_NAME = "DXSystem2016";
+	constexpr char* WINDOW_TITLE_NAME = "ジャンプする旅";
 
 	//ウィンドウクラス名（基本的には変更しないこと）
 	constexpr char* WINDOW_CLASS_NAME = "3DSystemWindow";

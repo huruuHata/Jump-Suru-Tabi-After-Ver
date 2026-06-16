@@ -54,40 +54,20 @@ struct Field
 namespace KeyString
 {
 	//****************
-	//マップデータ
-	//****************
-
-	constexpr char* FILE_MAP1 = "Resource\\Map\\map.txt";
-	constexpr char* FILE_MAP2 = "Resource\\Map\\map2.txt";
-	constexpr char* FILE_MAP3 = "Resource\\Map\\map3.txt";
-	constexpr char* FILE_MAP4 = "Resource\\Map\\map4.txt";
-	constexpr char* FILE_MAP5 = "Resource\\Map\\map5.txt";
-	constexpr char* FILE_MAP6 = "Resource\\Map\\map6.txt";
-	constexpr char* FILE_MAP7 = "Resource\\Map\\map7.txt";
-	constexpr char* FILE_MAP8 = "Resource\\Map\\map8.txt";
-	constexpr char* FILE_MAP9 = "Resource\\Map\\map9.txt";
-	constexpr char* FILE_MAP10 = "Resource\\Map\\map10.txt";
-
-	constexpr char* FILE_MAP11 = "Resource\\Map\\map11.txt";
-	constexpr char* FILE_MAP12 = "Resource\\Map\\map12.txt";
-	constexpr char* FILE_MAP13 = "Resource\\Map\\map13.txt";
-	constexpr char* FILE_MAP14 = "Resource\\Map\\map14.txt";
-	constexpr char* FILE_MAP15 = "Resource\\Map\\map15.txt";
-	constexpr char* FILE_MAP16 = "Resource\\Map\\map16.txt";
-	constexpr char* FILE_MAP17 = "Resource\\Map\\map17.txt";
-	constexpr char* FILE_MAP18 = "Resource\\Map\\map18.txt";
-	constexpr char* FILE_MAP19 = "Resource\\Map\\map19.txt";
-	constexpr char* FILE_MAP20 = "Resource\\Map\\map20.txt";
-
-	constexpr char* FILE_BUILD = "Resource\\Map\\mapBuildMode.txt";
-
-
-	//****************
 	// ファイル
 	//****************
 
-	constexpr char* FILE_PLAYER = "Resource\\Data\\Json\\PlayerData.json";
-	constexpr char* FILE_STAGE = "Resource\\Data\\Json\\StageData.json";
+	//オブジェクト
+
+	constexpr char* FILE_PLAYER = "Resource\\Data\\Json\\Object\\PlayerData.json";
+	constexpr char* FILE_STAGE = "Resource\\Data\\Json\\Object\\StageData.json";
+	
+	//ＵＩ
+
+	constexpr char* FILE_TITLE_UI = "Resource\\Data\\Json\\UI\\TitleUI.json";
+	constexpr char* FILE_GAME_UI = "Resource\\Data\\Json\\UI\\GameUI.json";
+	constexpr char* FILE_CLEAR_UI = "Resource\\Data\\Json\\UI\\ClearUI.json";
+	constexpr char* FILE_GAMEOVER_UI = "Resource\\Data\\Json\\UI\\GameoverUI.json";
 
 	//****************
 	// テクスチャ
@@ -128,7 +108,7 @@ namespace KeyString
 
 	constexpr char* TEXTURE_NEXT = "Resource\\Texture\\Clear\\NextStage.png";
 	constexpr char* TEXTURE_CLEAR_BACK = "Resource\\Texture\\Clear\\StageClearBack.png";
-	constexpr char* TEXTURE_CLEAR = "Resource\\Texture\\Clear\\StageClear.png";
+	constexpr char* TEXTURE_CLEAR_TELOP = "Resource\\Texture\\Clear\\StageClearTelop.png";
 
 	//ゲームクリアシーン
 

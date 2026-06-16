@@ -10,6 +10,9 @@
 
 #include "..\\Scene\\Scene.h"
 
+#include "..\\..\\Object\\Engine\\ResourceSetting\\ResourceSetting.h"
+#include "..\\..\\Object\\UI\\ClearUI\\ClearUI.h"
+
 class SceneClear : public Scene
 {
 public:
@@ -64,4 +67,7 @@ public:
 
 private:
 
+	ResourceSetting& m_setting = ResourceSetting::getInstance();
+
+	ClearUI m_clearUI;
 };

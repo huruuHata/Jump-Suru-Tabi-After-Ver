@@ -23,7 +23,7 @@ void Stage::Initialize(const bool bBlack_mode, const bool bBuild_mode, const int
     m_draw.filename = bBlack_mode ? data["Texture"]["Black"]:
 								    data["Texture"]["White"];
 
-	//後々入れるためここでは仮の初期化
+	//仮の初期化
 	m_draw.position = Vector2Int(0, 0);
 	m_draw.texture_num = 0;
 }

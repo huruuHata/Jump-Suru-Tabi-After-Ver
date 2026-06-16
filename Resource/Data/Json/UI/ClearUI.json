@@ -1,6 +1,67 @@
 {
-  "Back": 
+  "StageClearBack": 
   {
-     
+    "Filename": "Resource\\Texture\\Clear\\StageClearBack.png",
+
+    "Image": {
+      "Width": 1280,
+      "Height": 960
+    },
+
+    "Draw": {
+      "Width": 768,
+      "Height": 576
+    },
+
+    "Position": {
+      "x": 0,
+      "y": 0
+    },
+
+    "Alpha": 255
+  },
+
+  "StageClearTelop": {
+    "Filename": "Resource\\Texture\\Clear\\StageClearTelop.png",
+
+    "Image": {
+      "Width": 1280,
+      "Height": 960
+    },
+
+    "Draw": {
+      "Width": 768,
+      "Height": 576
+    },
+
+    "Position": {
+      "x": 0,
+      "y": -768
+    },
+
+    "Alpha": 255
+  },
+
+  "NextStage": 
+  {
+    "Filename" :  "Resource\\Texture\\Clear\\NextStage.png",
+ 
+    "Image": {
+      "Width": 1280,
+      "Height": 960
+    },
+
+    "Draw": {
+      "Width": 768,
+      "Height": 576
+    },
+
+    "Position": {
+      "x": 0,
+      "y": 0
+    },
+
+    "Alpha": 255
   } 
+
 }

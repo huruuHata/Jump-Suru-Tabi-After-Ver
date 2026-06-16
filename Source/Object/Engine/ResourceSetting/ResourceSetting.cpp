@@ -161,7 +161,7 @@ void ResourceSetting::ClearSetting()
 	{
 		TEXTURE_NEXT,
 		TEXTURE_CLEAR_BACK,
-		TEXTURE_CLEAR,
+		TEXTURE_CLEAR_TELOP,
 	};
 
 	m_ses =

@@ -82,9 +82,5 @@ void Player::JumpAndPhysics(Engine * pEngine, const Field& field, float delta_ti
 	}
 
 	m_jump_physics.Update(field, m_draw, delta_time);
-
-	//m_draw.position.y = jump_physics.new_y;
-	
-	//if (jump_physics.bGrounded) m_bJumping = false;
 }
 
