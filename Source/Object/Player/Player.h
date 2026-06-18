@@ -18,7 +18,8 @@ public:
 	void Initialize(const bool bBlack_mode, const int block_width, const int block_height, const Vector2Int start_pos);
 	void Update(Engine* pEngine, const Field& field, const float delta_time);
 
-	bool IsGoal();
+	bool IsGoal() const;
+	bool IsGameover() const;
 
 private:
 
@@ -40,7 +41,5 @@ private:
 	PlayerCollide m_collide;
 
 	json m_data;
-
-	bool m_bGoal;
 };
 

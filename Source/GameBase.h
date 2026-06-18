@@ -101,8 +101,8 @@ namespace KeyString
 
 	//ステージビルドモード
 
-	constexpr char* TEXTURE_BUILD_KEY_EXPLAIN = "Resource\\Texture\\Game\\Explain\\StgaeBuildMode\\BuildModeKeyExplain.png";
-	constexpr char* TEXTURE_BUILD_EXPALIN = "Resource\\Texture\\StgaeBuildMode\\BuildModeExplain.png";
+	constexpr char* TEXTURE_BUILD_KEY_EXPLAIN = "Resource\\Texture\\Game\\Explain\\StageBuildMode\\BuildModeKeyExplain.png";
+	constexpr char* TEXTURE_BUILD_EXPLAIN = "Resource\\Texture\\Game\\Explain\\StageBuildMode\\BuildExplain.png";
 
 	//ステージクリアシーン
 
@@ -129,7 +129,7 @@ namespace KeyString
 	// ＢＧＭ
 	//****************
 
-	constexpr char* BGM_START = "Resource\\BGM\\TitleBGM.wav";
+	constexpr char* BGM_TITLE = "Resource\\BGM\\Title.wav";
 	constexpr char* BGM_WHITE = "Resource\\BGM\\ShiromotiJump.wav";
 	constexpr char* BGM_BLACK = "Resource\\BGM\\KuromotiJump.wav";
 	constexpr char* BGM_END = "Resource\\BGM\\ENDROLL.wav";

@@ -40,10 +40,8 @@ void Player::Initialize(const bool bBlack_mode, const int block_width, const int
 
 	m_jump_physics.Initialize(m_data, m_block_width, m_block_height);
 	m_movement.Initialzie(m_block_width, m_block_height);
-	 
-	m_collide.Initialize();
 
-	m_bGoal = false;
+	m_collide.Initialize();
 }
 
 void Player::Update(Engine * pEngine, const Field& field, const float delta_time)
@@ -54,16 +52,16 @@ void Player::Update(Engine * pEngine, const Field& field, const float delta_time
 	JumpAndPhysics(pEngine, field, delta_time);
 
 	m_collide.Update();
-
-	if (m_movement.IsGoal() || m_jump_physics.IsGoal())
-	{
-		m_bGoal = true;
-	}
 }
 
-bool Player::IsGoal()
+bool Player::IsGoal() const
 {
-	return m_bGoal;
+	return m_movement.IsGoal() || m_jump_physics.IsGoal();
+}
+
+bool Player::IsGameover() const
+{
+	return m_movement.IsGameover() || m_jump_physics.IsGameover();
 }
 
 void Player::Move(Engine * pEngine, const Field& field, float delta_time)

@@ -1,6 +1,44 @@
 {
-  "Back": 
+  "GameoverBack": {
+    "Filename": "Resource\\Texture\\Gameover\\GameoverBack.png",
+
+    "Image": {
+      "Width": 1280,
+      "Height": 960
+    },
+
+    "Draw": {
+      "Width": 768,
+      "Height": 576
+    },
+
+    "Position": {
+      "x": 0,
+      "y": 0
+    },
+
+    "Alpha": 255
+  },
+
+  "Gameover": 
   {
-     
+    "Filename" :  "Resource\\Texture\\Gameover\\Gameover.png",
+ 
+    "Image": {
+      "Width": 1280,
+      "Height": 960
+    },
+
+    "Draw": {
+      "Width": 768,
+      "Height": 576
+    },
+
+    "Position": {
+      "x": 0,
+      "y": 0
+    },
+
+    "Alpha": 0
   } 
 }

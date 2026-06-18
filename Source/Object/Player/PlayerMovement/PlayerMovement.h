@@ -23,7 +23,8 @@ public:
 	void Initialzie(const int block_width, const int block_height);
 	Output Update(const Field& field, BaseObject::DrawSet& draw, const int move_speed,  const unsigned int key_flag, const float delta_time);
 
-	bool IsGoal();
+	bool IsGoal() const;
+	bool IsGameover() const;
 
 private:
 
@@ -54,4 +55,5 @@ private:
 	int m_block_height;
 
 	bool m_bGoal;
+	bool m_bGameover;
 };

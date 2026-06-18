@@ -36,7 +36,9 @@ SceneTitle::~SceneTitle()
 //=============================================================================
 void SceneTitle::Start()
 {
-	m_nowSceneData.Set(SCENE_GAME);
+	m_setting.SceneResourceSetting(m_pEngine, SCENE_TITLE);
+
+	m_pEngine->PlayBGM();
 }
 
 //=============================================================================
@@ -44,7 +46,37 @@ void SceneTitle::Start()
 //=============================================================================
 void SceneTitle::Update()
 {
+	m_titleUI.Update(m_pEngine);
 
+	//通常モード
+	if (m_pEngine->GetKeyStateSync(DIK_RETURN))
+	{
+		m_system.SetGameMode(false, false);
+
+		m_pEngine->PlaySE(SE_DECIDE);
+		m_timer_start_wait.SetInterval(350);
+	}
+	//ブラックモード
+	if (m_pEngine->GetKeyStateSync(DIK_K))
+	{
+		m_system.SetGameMode(true, false);
+
+		m_pEngine->PlaySE(SE_DECIDE);
+		m_timer_start_wait.SetInterval(350);
+	}
+	//ステージビルドモード
+	if (m_pEngine->GetKeyStateSync(DIK_S))
+	{
+		m_system.SetGameMode(false, true);
+
+		m_pEngine->PlaySE(SE_DECIDE);
+		m_timer_start_wait.SetInterval(350);
+	}
+
+	if (m_timer_start_wait.GetTiming())
+	{
+		m_nowSceneData.Set(SCENE_GAME);
+	}
 }
 
 //=============================================================================
@@ -54,6 +86,8 @@ void SceneTitle::Draw()
 {
 	m_pEngine->SpriteBegin();
 
+	m_titleUI.Draw(m_pEngine);
+
 	m_pEngine->SpriteEnd();
 }
 
@@ -62,7 +96,7 @@ void SceneTitle::Draw()
 //=============================================================================
 void SceneTitle::Exit()
 {
-
+	m_setting.SceneResourceRelease(m_pEngine);
 }
 
 //=============================================================================

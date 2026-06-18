@@ -1,6 +1,107 @@
 {
-  "Back": 
-  {
-     
-  } 
+  "Back": {
+    "Filename": "Resource\\Texture\\Title\\WhiteBack.png",
+
+    "Image": {
+      "Width": 1280,
+      "Height": 960
+    },
+
+    "Draw": {
+      "Width": 768,
+      "Height": 576
+    },
+
+    "Position": {
+      "x": 0,
+      "y": 0
+    },
+
+    "Alpha": 255
+  },
+
+  "Start": {
+    "Filename": "Resource\\Texture\\Title\\Start.png",
+
+    "Image": {
+      "Width": 1280,
+      "Height": 960
+    },
+
+    "Draw": {
+      "Width": 768,
+      "Height": 576
+    },
+
+    "Position": {
+      "x": 0,
+      "y": 0
+    },
+
+    "Alpha": 0
+  },
+
+  "Title": {
+    "Filename": "Resource\\Texture\\Title\\Title.png",
+
+    "Image": {
+      "Width": 1280,
+      "Height": 960
+    },
+
+    "Draw": {
+      "Width": 768,
+      "Height": 576
+    },
+
+    "Position": {
+      "x": 0,
+      "y": -576
+    },
+
+    "Alpha": 255
+  },
+
+  "WhiteChara": {
+    "Filename": "Resource\\Texture\\Title\\TitleWhiteChara.png",
+
+    "Image": {
+      "Width": 1280,
+      "Height": 960
+    },
+
+    "Draw": {
+      "Width": 768,
+      "Height": 576
+    },
+
+    "Position": {
+      "x": -64,
+      "y": 64
+    },
+
+    "Alpha": 255
+  },
+
+
+  "BlackChara": {
+    "Filename": "Resource\\Texture\\Title\\TitleBlackChara.png",
+
+    "Image": {
+      "Width": 1280,
+      "Height": 960
+    },
+
+    "Draw": {
+      "Width": 768,
+      "Height": 576
+    },
+
+    "Position": {
+      "x": 64,
+      "y": 64
+    },
+
+    "Alpha": 255
+  }
 }

@@ -50,15 +50,28 @@ void SceneClear::Update()
 
 	if (m_pEngine->GetKeyStateSync(DIK_RETURN))
 	{
+		//CLEAR画面→NEXTSTAGE画面
+
+		//NEXTSTAGE画面であれば次のステージ
 		if (m_clearUI.IsNextStageDisplay())
 		{
 			m_gameData.map_no++;
 
 			m_nowSceneData.Set(SCENE_GAME);
 		}
+		//CLEAR画面のテロップが落ち切ったか
 		else if (m_clearUI.IsClearTelopDropFinish())
 		{
-			m_clearUI.SetNextStageDisplayTrue();
+			//ステージビルドモードならNEXTSTAGE画面に行かずそのままゲームに戻す
+			if (m_system.GetBuildMode())
+			{
+				m_nowSceneData.Set(SCENE_GAME);
+			}
+			//NEXTSTAGE画面を表示させる
+			else
+			{
+				m_clearUI.SetNextStageDisplayTrue();
+			}
 		}
 	}
 }

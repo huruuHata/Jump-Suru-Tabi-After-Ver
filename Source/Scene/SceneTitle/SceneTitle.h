@@ -10,6 +10,10 @@
 
 #include "..\\Scene\\Scene.h"
 
+#include "..\\..\\Object\\Engine\\ResourceSetting\\ResourceSetting.h"
+#include "..\\..\\Object\\Engine\\GameSystem\\GameSystem.h"
+#include "..\\..\\Object\\UI\\TitleUI\\TitleUI.h"
+
 class SceneTitle : public Scene
 {
 public:
@@ -64,4 +68,10 @@ public:
 
 private:
 
+	TitleUI m_titleUI;
+
+	Timer m_timer_start_wait;
+
+	ResourceSetting& m_setting = ResourceSetting::getInstance();
+	GameSystem& m_system = GameSystem::getInstance();
 };

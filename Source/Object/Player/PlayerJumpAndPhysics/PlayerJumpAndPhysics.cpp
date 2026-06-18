@@ -8,6 +8,7 @@ using namespace WindowSetting;
 
 PlayerJumpAndPhysics::PlayerJumpAndPhysics() : m_bGrounded(true)	
 	                                         , m_bJumping(false)
+	                                         , m_bGameover(false)
 {
 }
 
@@ -45,14 +46,19 @@ PlayerJumpAndPhysics::Output PlayerJumpAndPhysics::Update(const Field& field, Ba
 	return out;
 }
 
-bool PlayerJumpAndPhysics::IsGrounded()
+bool PlayerJumpAndPhysics::IsGrounded() const
 {
 	return m_bGrounded;
 }
 
-bool PlayerJumpAndPhysics::IsGoal()
+bool PlayerJumpAndPhysics::IsGoal() const
 {
 	return m_bGoal;
+}
+
+bool PlayerJumpAndPhysics::IsGameover() const
+{
+	return m_bGameover;
 }
  
 void PlayerJumpAndPhysics::JumpCheck(Engine* pEngine, BaseObject::DrawSet& draw, bool bBlack_mode)
@@ -80,7 +86,7 @@ bool PlayerJumpAndPhysics::CheckGround(const Field& field, int& ground_y, BaseOb
 
 	if (field.map[map_y][left_x] == JAGGED || field.map[map_y][right_x] == JAGGED)
 	{
-		//m_bGameover = true;
+		m_bGameover = true;
 	}
 
 	//着地
@@ -113,10 +119,9 @@ void PlayerJumpAndPhysics::Falling(const Field& field, BaseObject::DrawSet& draw
 {
 	draw.position.y += (int)(m_jump_speed * delta_time);
 
-	if (draw.position.y > WINDOW_HEIGHT - draw.draw_width)
+	if (draw.position.y > WINDOW_HEIGHT - draw.draw_height)
 	{
-		draw.position.y = WINDOW_HEIGHT - draw.draw_width;
-		m_bGrounded = true;
+		m_bGameover = true;
 		return;
 	}
 
@@ -165,7 +170,7 @@ void PlayerJumpAndPhysics::UpCheck(const Field& field, BaseObject::DrawSet& draw
 	{
 		if (field.map[map_y][left_x] == JAGGED || field.map[map_y][right_x] == JAGGED)
 		{
-			//m_bGameover = true;
+			m_bGameover = true;
 		}
 
 		draw.position.y = (map_y + 1) * draw.draw_height;

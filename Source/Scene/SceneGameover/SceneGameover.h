@@ -11,6 +11,7 @@
 #include "..\\Scene\\Scene.h"
 
 #include "..\\..\\Object\\Engine\\ResourceSetting\\ResourceSetting.h"
+#include "..\\..\\Object\\UI\\GameoverUI\\GameoverUI.h"
 
 class SceneGameover : public Scene
 {
@@ -68,4 +69,5 @@ private:
 
 	ResourceSetting& m_setting = ResourceSetting::getInstance();
 
+	GameoverUI m_gameoverUI;
 };

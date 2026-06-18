@@ -11,6 +11,7 @@
 #include "..\\Scene\\Scene.h"
 
 #include "..\\..\\Object\\Engine\\ResourceSetting\\ResourceSetting.h"
+#include "..\\..\\Object\\Engine\\GameSystem\\GameSystem.h"
 #include "..\\..\\Object\\UI\\ClearUI\\ClearUI.h"
 
 class SceneClear : public Scene
@@ -67,7 +68,8 @@ public:
 
 private:
 
-	ResourceSetting& m_setting = ResourceSetting::getInstance();
-
 	ClearUI m_clearUI;
+
+	ResourceSetting& m_setting = ResourceSetting::getInstance();
+	GameSystem& m_system = GameSystem::getInstance();
 };

@@ -36,7 +36,9 @@ SceneGameover::~SceneGameover()
 //=============================================================================
 void SceneGameover::Start()
 {
+	m_setting.SceneResourceSetting(m_pEngine, SCENE_GAMEOVER);
 
+	m_pEngine->PlaySE(SE_GAMEOVER);
 }
 
 //=============================================================================
@@ -44,7 +46,12 @@ void SceneGameover::Start()
 //=============================================================================
 void SceneGameover::Update()
 {
+	m_gameoverUI.Update(m_pEngine);
 
+	if (m_gameoverUI.IsFadeInFinish() && m_pEngine->GetKeyStateSync(DIK_RETURN))
+	{
+		m_nowSceneData.Set(SCENE_GAME);
+	}
 }
 
 //=============================================================================
@@ -54,6 +61,8 @@ void SceneGameover::Draw()
 {
 	m_pEngine->SpriteBegin();
 
+	m_gameoverUI.Draw(m_pEngine);
+
 	m_pEngine->SpriteEnd();
 }
 
@@ -62,7 +71,7 @@ void SceneGameover::Draw()
 //=============================================================================
 void SceneGameover::Exit()
 {
-
+	m_setting.SceneResourceRelease(m_pEngine);
 }
 
 //=============================================================================

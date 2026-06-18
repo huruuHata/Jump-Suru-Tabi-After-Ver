@@ -25,8 +25,9 @@ public:
 
 	Output Update(const Field& field, BaseObject::DrawSet& draw, const float delta_time);
 
-	bool IsGrounded();
-	bool IsGoal();
+	bool IsGrounded() const;
+	bool IsGoal() const;
+	bool IsGameover() const;
 
 	void JumpCheck(Engine* pEngine, BaseObject::DrawSet& draw, const bool bBlack_mode);
 
@@ -65,4 +66,5 @@ private:
 	int m_block_height;
 
 	bool m_bGoal;
+	bool m_bGameover;
 };

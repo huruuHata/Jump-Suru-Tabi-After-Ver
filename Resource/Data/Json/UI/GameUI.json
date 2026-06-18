@@ -1,6 +1,151 @@
 {
-  "Back": 
+  "Explain": 
   {
-     
-  } 
+    "Fall": {
+      "Filename": "Resource\\Texture\\Game\\Explain\\Game\\FallExplain.png",
+
+      "Image": {
+        "Width": 128,
+        "Height": 64
+      },
+
+      "Draw": {
+        "Width": 128,
+        "Height": 64
+      },
+
+      "Position": {
+        "x": 550,
+        "y": 450
+      },
+
+      "Alpha": 255
+    },
+
+    "Jump": {
+      "Filename": "Resource\\Texture\\Game\\Explain\\Game\\JumpExplain.png",
+
+      "Image": {
+        "Width": 128,
+        "Height": 64
+      },
+
+      "Draw": {
+        "Width": 128,
+        "Height": 64
+      },
+
+      "Position": {
+        "x": 70,
+        "y": 70
+      },
+
+      "Alpha": 255
+    },
+
+    "Key": {
+      "Filename": "Resource\\Texture\\Game\\Explain\\Game\\KeyExplain.png",
+
+      "Image": {
+        "Width": 128,
+        "Height": 64
+      },
+
+      "Draw": {
+        "Width": 128,
+        "Height": 64
+      },
+
+      "Position": {
+        "x": 90,
+        "y": 450
+      },
+
+      "Alpha": 255
+    },
+
+    "Goal": {
+      "Filename": "Resource\\Texture\\Game\\Explain\\Game\\GoalExplain.png",
+
+      "Image": {
+        "Width": 128,
+        "Height": 64
+      },
+
+      "Draw": {
+        "Width": 128,
+        "Height": 64
+      },
+
+      "Position": {
+        "x": 390,
+        "y": 130
+      },
+
+      "Alpha": 255
+    },
+
+    "Hit": {
+      "Filename": "Resource\\Texture\\Game\\Explain\\Game\\HitExplain.png",
+
+      "Image": {
+        "Width": 128,
+        "Height": 64
+      },
+
+      "Draw": {
+        "Width": 128,
+        "Height": 64
+      },
+
+      "Position": {
+        "x": 300,
+        "y": 115
+      },
+
+      "Alpha": 255
+    },
+
+    "Build": {
+      "Filename": "Resource\\Texture\\Game\\Explain\\StageBuildMode\\BuildExplain.png",
+
+      "Image": {
+        "Width": 1289,
+        "Height": 960
+      },
+
+      "Draw": {
+        "Width": 768,
+        "Height": 576
+      },
+
+      "Position": {
+        "x": 0,
+        "y": 0
+      },
+
+      "Alpha": 255
+    },
+
+    "BuildKey": {
+      "Filename": "Resource\\Texture\\Game\\Explain\\StageBuildMode\\BuildModeKeyExplain.png",
+
+      "Image": {
+        "Width": 128,
+        "Height": 64
+      },
+
+      "Draw": {
+        "Width": 128,
+        "Height": 64
+      },
+
+      "Position": {
+        "x": 20,
+        "y": 506
+      },
+
+      "Alpha": 255
+    }
+  }
 }

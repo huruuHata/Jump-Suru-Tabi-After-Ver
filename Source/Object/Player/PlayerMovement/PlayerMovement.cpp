@@ -15,6 +15,7 @@ void PlayerMovement::Initialzie(const int block_width, const int block_height)
 	m_block_height = block_height;
 
 	m_bGoal = false;
+	m_bGameover = false;
 }
 
 PlayerMovement::Output PlayerMovement::Update(const Field& field, BaseObject::DrawSet& draw, const int move_speed, unsigned int key_flag, const float delta_time)
@@ -53,9 +54,14 @@ PlayerMovement::Output PlayerMovement::Update(const Field& field, BaseObject::Dr
 	return out;
 }
 
-bool PlayerMovement::IsGoal()
+bool PlayerMovement::IsGoal() const
 {
 	return m_bGoal;
+}
+
+bool PlayerMovement::IsGameover() const
+{
+	return m_bGameover;
 }
 
 bool PlayerMovement::CanMoveX(const Field& field, const int next_pixel_x, BaseObject::DrawSet& draw)
@@ -73,7 +79,7 @@ bool PlayerMovement::CanMoveX(const Field& field, const int next_pixel_x, BaseOb
 
 		if (field.map[y][map_x] == JAGGED)
 		{
-			//m_bGameover = true;
+			m_bGameover = true;
 		}
 
 		if (field.map[y][map_x] == GOAL)

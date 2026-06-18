@@ -33,7 +33,7 @@ void SceneInit::Update()
 	// 最初のシーン設定 //
 	//------------------//
 
-	m_nowSceneData.Set(SCENE_GAME);
+	m_nowSceneData.Set(SCENE_TITLE);
 }
 
 

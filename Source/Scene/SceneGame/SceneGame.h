@@ -16,6 +16,7 @@
 #include "..\\..\\Object\\Stage\\Stage.h"
 #include "..\\..\\Object\\Stage\\Back\\Back.h"
 #include "..\\..\\Object\\Engine\\DeltaTime\\DeltaTime.h"
+#include "..\\..\\Object\\UI\\GameUI\\GameUI.h"
 
 using namespace std;
 
@@ -78,6 +79,8 @@ private:
 	Back m_back;
 
 	Field m_field;
+
+	GameUI m_gameUI;
 
 	ResourceSetting& m_setting = ResourceSetting::getInstance();
 	DeltaTime& m_delta = DeltaTime::getInstance();

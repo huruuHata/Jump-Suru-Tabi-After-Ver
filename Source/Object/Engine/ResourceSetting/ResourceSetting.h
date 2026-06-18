@@ -18,7 +18,7 @@ public:
 	ResourceSetting(const ResourceSetting&) = delete;
 	ResourceSetting& operator=(const ResourceSetting&) = delete;
 
-	void SceneResourceSetting(Engine* pEngine, const int scene_num, const bool bBlack_mode = false);
+	void SceneResourceSetting(Engine* pEngine, const int scene_num, const bool bBlack_mode = false, const bool bBuild_mode = false);
 	void SceneResourceRelease(Engine* pEngine);
 
 private:
@@ -34,7 +34,7 @@ private:
 	void ReleaseBGM(Engine* pEngine);
 
 	void TitleSetting();
-	void GameSetting(const bool bBlack_mode);
+	void GameSetting(const bool bBlack_mode, const bool bBuild_mode);
 	void ClearSetting();
 	void GameoverSetting();
 	void EndrollSetting();

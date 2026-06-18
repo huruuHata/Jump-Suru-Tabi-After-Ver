@@ -6,7 +6,7 @@
 using namespace KeyString;
 using namespace Common;
 
-void ResourceSetting::SceneResourceSetting(Engine* pEngine, const int scene_num, const bool bBlack_mode)
+void ResourceSetting::SceneResourceSetting(Engine* pEngine, const int scene_num, const bool bBlack_mode, const bool bBuild_mode)
 {
 	m_textures.clear();
 	m_font.clear();
@@ -23,7 +23,7 @@ void ResourceSetting::SceneResourceSetting(Engine* pEngine, const int scene_num,
 
 	case SCENE_GAME:
 
-		GameSetting(bBlack_mode);
+		GameSetting(bBlack_mode, bBuild_mode);
 
 		break;
 
@@ -123,7 +123,7 @@ void ResourceSetting::TitleSetting()
 		TEXTURE_ENDROLL,
 	};
 
-	m_bgm = BGM_START;
+	m_bgm = BGM_TITLE;
 
 	m_ses =
 	{
@@ -131,7 +131,7 @@ void ResourceSetting::TitleSetting()
 	};
 }
 
-void ResourceSetting::GameSetting(const bool bBlack_mode)
+void ResourceSetting::GameSetting(const bool bBlack_mode, const bool bBuild_mode)
 {
 	if (bBlack_mode)
 	{
@@ -143,17 +143,31 @@ void ResourceSetting::GameSetting(const bool bBlack_mode)
 	}
 	else
 	{
-		m_textures =
+		if (bBuild_mode)
 		{
-			TEXTURE_CHIP_WHITE,
-			TEXTURE_WHITE_CHARA,
-			TEXTURE_EXPLAIN_GOAL,
-			TEXTURE_EXPLAIN_FALL,
-			TEXTURE_EXPLAIN_KEY,
-			TEXTURE_EXPLAIN_JUMP,
-			TEXTURE_EXPLAIN_HIT,
-			TEXTURE_BACK_GAME,
-		};
+			m_textures =
+			{
+				TEXTURE_CHIP_WHITE,
+				TEXTURE_WHITE_CHARA,
+				TEXTURE_BUILD_KEY_EXPLAIN,
+				TEXTURE_BUILD_EXPLAIN,
+				TEXTURE_BACK_GAME,
+			};
+		}
+		else
+		{
+			m_textures =
+			{
+				TEXTURE_CHIP_WHITE,
+				TEXTURE_WHITE_CHARA,
+				TEXTURE_EXPLAIN_GOAL,
+				TEXTURE_EXPLAIN_FALL,
+				TEXTURE_EXPLAIN_KEY,
+				TEXTURE_EXPLAIN_JUMP,
+				TEXTURE_EXPLAIN_HIT,
+				TEXTURE_BACK_GAME,
+			};
+		}
 	}
 
 	m_bgm = bBlack_mode ? BGM_BLACK : BGM_WHITE;

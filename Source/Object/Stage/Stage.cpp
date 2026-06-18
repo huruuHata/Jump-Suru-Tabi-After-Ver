@@ -4,6 +4,7 @@
 #include "Stage.h"
 
 using namespace KeyString;
+using namespace InputKey;
 
 void Stage::Initialize(const bool bBlack_mode, const bool bBuild_mode, const int map_no)
 {
@@ -23,13 +24,15 @@ void Stage::Initialize(const bool bBlack_mode, const bool bBuild_mode, const int
     m_draw.filename = bBlack_mode ? data["Texture"]["Black"]:
 								    data["Texture"]["White"];
 
-	//仮の初期化
 	m_draw.position = Vector2Int(0, 0);
 	m_draw.texture_num = 0;
+
+	m_build_block_num = 0;
 }
 
-void Stage::Updata()
+void Stage::Updata(Engine* pEngine, const bool bBuild_mode)
 {
+	if (bBuild_mode) StageBuild(pEngine);
 }
 
 void Stage::Draw(Engine* pEngine)
@@ -55,8 +58,10 @@ Field Stage::GetMapArray()
 {
 	Field field{};
 
-	for (int i = 0; i < m_block_row; i++) {
-		for (int j = 0; j < m_block_col; j++) {
+	for (int i = 0; i < m_block_row; i++)
+	{
+		for (int j = 0; j < m_block_col; j++) 
+		{
 			field.map[i][j] = m_map_array[i][j];
 		}
 	}
@@ -81,11 +86,13 @@ void Stage::FileSetting(json& data, const bool bBlack_mode, const bool bBuild_mo
 
 	if (!bBuild_mode)
 	{
-		if (!bBlack_mode){
+		if (!bBlack_mode)
+		{
 			//表面マップ
 			filename = data["WhiteStage"][map_no ];
 		}
-		else{
+		else
+		{
 			//裏面マップ
 			filename = data["BlackStage"][map_no];
 		}
@@ -106,11 +113,48 @@ void Stage::FileSetting(json& data, const bool bBlack_mode, const bool bBuild_mo
 	ifs_map >> m_start_pos.x;
 	ifs_map >> m_start_pos.y;
 
-	for (int i = 0; i < m_block_row; i++) {
-		for (int j = 0; j < m_block_col; j++) {
+	for (int i = 0; i < m_block_row; i++) 
+	{
+		for (int j = 0; j < m_block_col; j++)
+		{
 			ifs_map >> m_map_array[i][j];
 		}
 	}
 
 	ifs_map.close();
+}
+
+void Stage::StageBuild(Engine* pEngine)
+{
+	if (pEngine->GetKeyStateSync(DIK_0))
+	{
+		m_build_block_num = 0;
+	}
+
+	//１～５までのキー入力に対応
+	for (int i = 0; i <= 4; i++)
+	{
+		if (pEngine->GetKeyStateSync((BYTE)(DIK_1 + i - 1)))
+		{
+			m_build_block_num = i;
+			break;
+		}
+	}
+
+	if (pEngine->GetMouseButtonSync(DIK_LBUTTON)) 
+	{
+		POINT point = pEngine->GetMousePosition();
+
+		int mx = point.x / m_draw.draw_width;
+		int my = point.y / m_draw.draw_height;
+
+		if (m_map_array[my][mx] != m_build_block_num)
+		{
+			m_map_array[my][mx] = m_build_block_num;
+		}
+		else if (m_map_array[my][mx] == m_build_block_num)
+		{
+			m_map_array[my][mx] = 0;
+		}
+	}
 }

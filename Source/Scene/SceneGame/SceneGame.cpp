@@ -36,10 +36,9 @@ SceneGame::~SceneGame()
 //=============================================================================
 void SceneGame::Start()
 {
-	m_system.SetGameMode(true, true);
+	m_setting.SceneResourceSetting(m_pEngine, SCENE_GAME, m_system.GetBlackMode(), m_system.GetBuildMode());
 
-	m_setting.SceneResourceSetting(m_pEngine, SCENE_GAME, m_system.GetBlackMode());
-
+	m_gameUI.Initialize(m_system.GetBlackMode(), m_system.GetBuildMode());
 	m_back.Initialize();
 	m_stage.Initialize(m_system.GetBlackMode(), m_system.GetBuildMode(), m_gameData.map_no);
 	m_player.Initialize(m_system.GetBlackMode(), m_stage.GetBlockWidth(), m_stage.GetBlockHeight(), m_stage.GetStartPlayerPosition());
@@ -58,12 +57,40 @@ void SceneGame::Update()
 
 	m_delta.DeltaTimeCount();
 
-	m_stage.Updata();
+	//ステージビルドモードはステージが変わるため更新が必要
+	if (m_system.GetBuildMode())
+	{
+		m_field = m_stage.GetMapArray();
+	}
+
+	m_stage.Updata(m_pEngine, m_system.GetBuildMode());
 	m_player.Update(m_pEngine, m_field, m_delta.GetDeltaTime());
 
 	if (m_player.IsGoal())
 	{
 		m_nowSceneData.Set(SCENE_CLEAR);
+	}
+	if (m_player.IsGameover())
+	{
+		m_nowSceneData.Set(SCENE_GAMEOVER);
+	}
+
+	if (m_system.GetBuildMode())
+	{
+		//ステージビルド説明表示非表示
+		if (m_pEngine->GetKeyStateSync(DIK_RETURN))
+		{
+			m_gameUI.SetDisplayBuildModeExplain(false);
+		}
+		if (m_pEngine->GetKeyStateSync(DIK_F2))
+		{
+			m_gameUI.SetDisplayBuildModeExplain(true);
+		}
+
+		if (m_pEngine->GetKeyStateSync(DIK_F1))
+		{
+			m_nowSceneData.Set(SCENE_GAME);
+		}
 	}
 }
 
@@ -77,6 +104,7 @@ void SceneGame::Draw()
 	if(!m_system.GetBlackMode()) m_back.Draw(m_pEngine);
 
 	m_stage.Draw(m_pEngine);
+	m_gameUI.Draw(m_pEngine, m_gameData.map_no, m_system.GetBlackMode(), m_system.GetBuildMode());
 	m_player.Draw(m_pEngine);
 
 	m_pEngine->SpriteEnd();
