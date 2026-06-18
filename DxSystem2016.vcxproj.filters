@@ -169,6 +169,9 @@
     <Filter Include="Object\Stage\Back">
       <UniqueIdentifier>{9a550dd0-e1fe-44f2-8722-73951d926bfd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Engine\GameSystem">
+      <UniqueIdentifier>{4a479e3c-8db0-4f3b-a839-0b49127402df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game.cpp">
@@ -389,6 +392,9 @@
     </ClCompile>
     <ClCompile Include="Source\Object\Stage\Back\Back.cpp">
       <Filter>Object\Stage\Back</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Object\Engine\GameSystem\GameSystem.cpp">
+      <Filter>Object\Engine\GameSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -634,6 +640,9 @@
     </ClInclude>
     <ClInclude Include="Source\Object\Stage\Back\Back.h">
       <Filter>Object\Stage\Back</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\Engine\GameSystem\GameSystem.h">
+      <Filter>Object\Engine\GameSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

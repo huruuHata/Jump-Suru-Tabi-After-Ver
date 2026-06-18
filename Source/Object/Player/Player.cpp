@@ -33,6 +33,8 @@ void Player::Initialize(const bool bBlack_mode, const int block_width, const int
 
 	m_draw.position = Vector2Int(start_pos.x * m_draw.draw_width, start_pos.y * m_draw.draw_height);
 
+	m_draw.filename = bBlack_mode ? m_black_texture : m_white_texture;
+
 	m_block_width = block_width;
 	m_block_height = block_height;
 

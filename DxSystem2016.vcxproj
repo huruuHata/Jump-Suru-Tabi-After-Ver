@@ -156,6 +156,7 @@
     <ClCompile Include="Source\Object\Engine\Collide\Collide.cpp" />
     <ClCompile Include="Source\Object\Engine\DeltaTime\DeltaTime.cpp" />
     <ClCompile Include="Source\Object\Engine\FileCheck\FileCheck.cpp" />
+    <ClCompile Include="Source\Object\Engine\GameSystem\GameSystem.cpp" />
     <ClCompile Include="Source\Object\Engine\ResourceSetting\ResourceSetting.cpp" />
     <ClCompile Include="Source\Object\Player\Player.cpp" />
     <ClCompile Include="Source\Object\Player\PlayerCollide\PlayerCollide.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="Source\Object\Engine\Collide\Collide.h" />
     <ClInclude Include="Source\Object\Engine\DeltaTime\DeltaTime.h" />
     <ClInclude Include="Source\Object\Engine\FileCheck\FileCheck.h" />
+    <ClInclude Include="Source\Object\Engine\GameSystem\GameSystem.h" />
     <ClInclude Include="Source\Object\Engine\ResourceSetting\ResourceSetting.h" />
     <ClInclude Include="Source\Object\Engine\Vector2Int\Vector2Int.h" />
     <ClInclude Include="Source\Object\Player\Player.h" />

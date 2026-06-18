@@ -37,6 +37,8 @@ SceneClear::~SceneClear()
 void SceneClear::Start()
 {
 	m_setting.SceneResourceSetting(m_pEngine, SCENE_CLEAR);
+
+	m_pEngine->PlaySE(SE_STAGECLEAR);
 }
 
 //=============================================================================
@@ -50,6 +52,8 @@ void SceneClear::Update()
 	{
 		if (m_clearUI.IsNextStageDisplay())
 		{
+			m_gameData.map_no++;
+
 			m_nowSceneData.Set(SCENE_GAME);
 		}
 		else if (m_clearUI.IsClearTelopDropFinish())

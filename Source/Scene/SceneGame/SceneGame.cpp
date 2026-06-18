@@ -36,13 +36,17 @@ SceneGame::~SceneGame()
 //=============================================================================
 void SceneGame::Start()
 {
-	m_setting.SceneResourceSetting(m_pEngine, SCENE_GAME);
+	m_system.SetGameMode(true, true);
+
+	m_setting.SceneResourceSetting(m_pEngine, SCENE_GAME, m_system.GetBlackMode());
 
 	m_back.Initialize();
-	m_stage.Initialize(false, false, 0);
-	m_player.Initialize(false, m_stage.GetBlockWidth(), m_stage.GetBlockHeight(), m_stage.GetStartPlayerPosition());
+	m_stage.Initialize(m_system.GetBlackMode(), m_system.GetBuildMode(), m_gameData.map_no);
+	m_player.Initialize(m_system.GetBlackMode(), m_stage.GetBlockWidth(), m_stage.GetBlockHeight(), m_stage.GetStartPlayerPosition());
 
 	m_field = m_stage.GetMapArray();
+
+	m_pEngine->PlayBGM();
 }
 
 //=============================================================================
@@ -50,6 +54,8 @@ void SceneGame::Start()
 //=============================================================================
 void SceneGame::Update()
 {
+	m_pEngine->LoopBGM();
+
 	m_delta.DeltaTimeCount();
 
 	m_stage.Updata();
@@ -68,7 +74,7 @@ void SceneGame::Draw()
 {
 	m_pEngine->SpriteBegin();
 
-	if(!false) m_back.Draw(m_pEngine);
+	if(!m_system.GetBlackMode()) m_back.Draw(m_pEngine);
 
 	m_stage.Draw(m_pEngine);
 	m_player.Draw(m_pEngine);

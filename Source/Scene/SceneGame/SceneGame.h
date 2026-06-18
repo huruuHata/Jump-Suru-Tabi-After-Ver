@@ -11,6 +11,7 @@
 #include "..\\Scene\\Scene.h"
 
 #include "..\\..\\Object\\Engine\\ResourceSetting\\ResourceSetting.h"
+#include "..\\..\\Object\\Engine\\GameSystem\\GameSystem.h"
 #include "..\\..\\Object\\Player\\Player.h"
 #include "..\\..\\Object\\Stage\\Stage.h"
 #include "..\\..\\Object\\Stage\\Back\\Back.h"
@@ -80,4 +81,5 @@ private:
 
 	ResourceSetting& m_setting = ResourceSetting::getInstance();
 	DeltaTime& m_delta = DeltaTime::getInstance();
+	GameSystem& m_system = GameSystem::getInstance();
 };
