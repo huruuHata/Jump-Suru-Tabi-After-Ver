@@ -61,7 +61,7 @@ bool PlayerJumpAndPhysics::IsGameover() const
 	return m_bGameover;
 }
  
-void PlayerJumpAndPhysics::JumpCheck(Engine* pEngine, BaseObject::DrawSet& draw, bool bBlack_mode)
+void PlayerJumpAndPhysics::JumpCheck(Engine* pEngine, BaseObject::DrawSet& draw, const bool bBlack_mode)
 {
 	if (!m_bJumping && m_bGrounded)
 	{

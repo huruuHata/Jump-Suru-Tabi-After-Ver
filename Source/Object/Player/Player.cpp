@@ -28,9 +28,6 @@ Player::Player()
 
 void Player::Initialize(const bool bBlack_mode, const int block_width, const int block_height, const Vector2Int start_pos)
 {
-	if (!bBlack_mode) m_draw.filename = m_white_texture;
-	else              m_draw.filename = m_black_texture;
-
 	m_draw.position = Vector2Int(start_pos.x * m_draw.draw_width, start_pos.y * m_draw.draw_height);
 
 	m_draw.filename = bBlack_mode ? m_black_texture : m_white_texture;
