@@ -3,6 +3,8 @@
 
 #include "FileCheck.h"
 
+using namespace std;
+
 const json FileCheck::FileOpenCheck(string json_file_name)
 {
 	std::ifstream ifs(json_file_name);
