@@ -20,22 +20,13 @@ public:
 		int look_dir;
 	};
 
-	void Initialzie(const int block_width, const int block_height);
+	void Initialize(const int block_width, const int block_height);
 	Output Update(const Field& field, BaseObject::DrawSet& draw, const int move_speed,  const unsigned int key_flag, const float delta_time);
 
 	bool IsGoal() const;
 	bool IsGameover() const;
 
 private:
-
-	enum
-	{
-		STAGE = 0,
-		GOAL = 1,
-		CANT_PASS = 2,
-		BLOCK = 4,
-		JAGGED = 5,
-	};
 
 	enum
 	{

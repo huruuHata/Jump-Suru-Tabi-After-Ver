@@ -3,6 +3,7 @@
 
 #include "Stage.h"
 
+using namespace std;
 using namespace KeyString;
 using namespace InputKey;
 
@@ -30,7 +31,7 @@ void Stage::Initialize(const bool bBlack_mode, const bool bBuild_mode, const int
 	m_build_block_num = 0;
 }
 
-void Stage::Updata(Engine* pEngine, const bool bBuild_mode)
+void Stage::Update(Engine* pEngine, const bool bBuild_mode)
 {
 	if (bBuild_mode) StageBuild(pEngine);
 }

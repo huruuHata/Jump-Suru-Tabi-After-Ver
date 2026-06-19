@@ -14,6 +14,13 @@ public:
 
 private:
 
+	enum
+	{
+		FIRST_STAGE = 0,
+		HIT_STAGE = 2,
+		LAST_STAGE = 9,
+	};
+
 	//通常モード用
 	UIData m_fall_explain;
 	UIData m_goal_explain;

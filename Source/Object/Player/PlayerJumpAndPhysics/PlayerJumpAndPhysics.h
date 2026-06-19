@@ -33,15 +33,6 @@ public:
 
 private:
 
-	enum
-	{
-		STAGE = 0,
-		GOAL = 1,
-		CANT_PASS = 2,
-		BLOCK = 4,
-		JAGGED = 5,
-	};
-
 	void Jumping(const Field& field, BaseObject::DrawSet& draw, const float delta_time);
 	void GroundProcess(const Field& field, BaseObject::DrawSet& draw);
 	void Falling(const Field& field, BaseObject::DrawSet& draw, const float delta_time);

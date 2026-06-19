@@ -18,8 +18,6 @@
 #include "..\\..\\Object\\Engine\\DeltaTime\\DeltaTime.h"
 #include "..\\..\\Object\\UI\\GameUI\\GameUI.h"
 
-using namespace std;
-
 class SceneGame : public Scene
 {
 public:

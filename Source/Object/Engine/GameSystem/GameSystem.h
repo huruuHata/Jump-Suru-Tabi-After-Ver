@@ -32,7 +32,7 @@ private:
 	bool m_is_gameclear;
 	bool m_is_all_gameclear;
 
-	GameSystem() { m_bBlack_mode = false; m_bBuild_mode = false; m_is_all_gameclear = false; }
+	GameSystem() { m_bBlack_mode = false; m_bBuild_mode = false; m_is_gameclear = false; m_is_all_gameclear = false; }
 
 	~GameSystem() = default;
 };

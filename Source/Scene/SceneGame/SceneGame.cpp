@@ -63,8 +63,8 @@ void SceneGame::Update()
 		m_field = m_stage.GetMapArray();
 	}
 
-	m_stage.Updata(m_pEngine, m_system.GetBuildMode());
-	m_player.Update(m_pEngine, m_field, m_delta.GetDeltaTime());
+	m_stage.Update(m_pEngine, m_system.GetBuildMode());
+	m_player.Update(m_pEngine, m_field, m_system.GetBlackMode(), m_delta.GetDeltaTime());
 
 	if (m_player.IsGoal())
 	{

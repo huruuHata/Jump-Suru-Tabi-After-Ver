@@ -46,21 +46,21 @@ void GameUI::Draw(Engine * pEngine, const int map_no, const bool bBlack_mode, co
 	}
 	else if (!bBlack_mode)
 	{
-		if (map_no == 0)
+		if (map_no == FIRST_STAGE)
 		{
 			BaseUI::Draw(pEngine, m_fall_explain);
 			BaseUI::Draw(pEngine, m_goal_explain);
 			BaseUI::Draw(pEngine, m_key_explain);
 			BaseUI::Draw(pEngine, m_jump_explain);
 		}
-		if (map_no == 2)
+		if (map_no == HIT_STAGE)
 		{
 			BaseUI::Draw(pEngine, m_hit_explain);
 		}
 	}
 	else
 	{
-		if (map_no == 9)
+		if (map_no == LAST_STAGE)
 		{
 			BaseUI::Draw(pEngine, m_congratulations);
 		}

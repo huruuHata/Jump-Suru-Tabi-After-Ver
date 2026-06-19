@@ -4,8 +4,6 @@
 #include "..\\..\\..\\GameBase.h"
 #include "..\\..\\Engine\\Vector2Int\\Vector2Int.h"
 
-using namespace std;
-
 class BaseObject
 {
 public:
@@ -18,7 +16,7 @@ public:
 		int draw_width;
 		int draw_height;
 		int texture_num;
-		string filename;
+		std::string filename;
 	};
 
 	void Draw(Engine* pEngine);

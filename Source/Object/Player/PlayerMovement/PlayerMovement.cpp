@@ -9,7 +9,7 @@ PlayerMovement::PlayerMovement() : m_look_dir(UP)
 {
 }
 
-void PlayerMovement::Initialzie(const int block_width, const int block_height)
+void PlayerMovement::Initialize(const int block_width, const int block_height)
 {
 	m_block_width = block_width;
 	m_block_height = block_height;

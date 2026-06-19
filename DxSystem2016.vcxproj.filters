@@ -22,12 +22,6 @@
     <Filter Include="System\Utility">
       <UniqueIdentifier>{0820cc25-72cb-4ac2-877b-e8ef860fd5db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\_ObjectSource">
-      <UniqueIdentifier>{55388980-12e3-4aec-b2ad-203eb7913472}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene\_SceneSource">
-      <UniqueIdentifier>{6c353e01-7060-475a-bb89-ef798b3efa3b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scene\Scene">
       <UniqueIdentifier>{8462f01b-8816-47dc-8ef5-fb96c04ddfaf}</UniqueIdentifier>
     </Filter>
@@ -84,9 +78,6 @@
     </Filter>
     <Filter Include="Effect">
       <UniqueIdentifier>{d617d604-442a-4877-b1c9-4e4641447fe1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\_ParticleSource">
-      <UniqueIdentifier>{e1cbd600-b5c2-46a2-8b15-2d021166cc38}</UniqueIdentifier>
     </Filter>
     <Filter Include="System\Engine\Billboard">
       <UniqueIdentifier>{038aba27-d260-41d7-a7b7-48f230cba974}</UniqueIdentifier>
@@ -198,12 +189,6 @@
     <ClCompile Include="Source\System\Utility\Vector3D.cpp">
       <Filter>System\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object\_ObjectSource\ObjectSource.cpp">
-      <Filter>Object\_ObjectSource</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Scene\_SceneSource\SceneSource.cpp">
-      <Filter>Scene\_SceneSource</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Scene\SceneTitle\SceneTitle.cpp">
       <Filter>Scene\SceneTitle</Filter>
     </ClCompile>
@@ -293,9 +278,6 @@
     </ClCompile>
     <ClCompile Include="Source\System\Engine\Line\Line.cpp">
       <Filter>System\Engine\Line</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Object\_ParticleSource\ParticleSource.cpp">
-      <Filter>Object\_ParticleSource</Filter>
     </ClCompile>
     <ClCompile Include="Source\System\Engine\Billboard\Billboard.cpp">
       <Filter>System\Engine\Billboard</Filter>
@@ -428,12 +410,6 @@
     <ClInclude Include="Source\System\Utility\Vector3D.h">
       <Filter>System\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Object\_ObjectSource\ObjectSource.h">
-      <Filter>Object\_ObjectSource</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Scene\_SceneSource\SceneSource.h">
-      <Filter>Scene\_SceneSource</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Scene\SceneTitle\SceneTitle.h">
       <Filter>Scene\SceneTitle</Filter>
     </ClInclude>
@@ -529,9 +505,6 @@
     </ClInclude>
     <ClInclude Include="Source\Effect\resource.h">
       <Filter>Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Object\_ParticleSource\ParticleSource.h">
-      <Filter>Object\_ParticleSource</Filter>
     </ClInclude>
     <ClInclude Include="Source\System\Engine\Billboard\Billboard.h">
       <Filter>System\Engine\Billboard</Filter>

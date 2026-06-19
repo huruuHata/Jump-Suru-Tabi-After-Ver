@@ -16,7 +16,7 @@ public:
 	Player();
 
 	void Initialize(const bool bBlack_mode, const int block_width, const int block_height, const Vector2Int start_pos);
-	void Update(Engine* pEngine, const Field& field, const float delta_time);
+	void Update(Engine* pEngine, const Field& field, const bool bBlack_mode, const float delta_time);
 
 	bool IsGoal() const;
 	bool IsGameover() const;
@@ -24,10 +24,10 @@ public:
 private:
 
 	void Move(Engine* pEngine, const Field& field, float delta_time);
-	void JumpAndPhysics(Engine* pEngine, const Field& field, float delta_time);
+	void JumpAndPhysics(Engine* pEngine, const Field& field, const bool bBlack_mode, float delta_time);
 
-	string m_white_texture;
-	string m_black_texture;
+	std::string m_white_texture;
+	std::string m_black_texture;
 
 	int m_block_width;
 	int m_block_height;

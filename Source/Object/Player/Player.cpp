@@ -36,17 +36,17 @@ void Player::Initialize(const bool bBlack_mode, const int block_width, const int
 	m_block_height = block_height;
 
 	m_jump_physics.Initialize(m_data, m_block_width, m_block_height);
-	m_movement.Initialzie(m_block_width, m_block_height);
+	m_movement.Initialize(m_block_width, m_block_height);
 
 	m_collide.Initialize();
 }
 
-void Player::Update(Engine * pEngine, const Field& field, const float delta_time)
+void Player::Update(Engine * pEngine, const Field& field, const bool bBlack_mode, const float delta_time)
 {
 	m_input.Update(pEngine);
 
 	Move(pEngine, field, delta_time);
-	JumpAndPhysics(pEngine, field, delta_time);
+	JumpAndPhysics(pEngine, field, bBlack_mode, delta_time);
 
 	m_collide.Update();
 }
@@ -71,11 +71,11 @@ void Player::Move(Engine * pEngine, const Field& field, float delta_time)
 	m_draw.position.x += (int)((moves.move_x * m_move_speed) * delta_time);
 }
 
-void Player::JumpAndPhysics(Engine * pEngine, const Field& field, float delta_time)
+void Player::JumpAndPhysics(Engine * pEngine, const Field& field, const bool bBlack_mode, float delta_time)
 {
 	if ((m_input.GetKeyFlag() & PlayerInput::JUMP_KEY))
 	{
-		m_jump_physics.JumpCheck(pEngine, m_draw, false);
+		m_jump_physics.JumpCheck(pEngine, m_draw, bBlack_mode);
 	}
 
 	m_jump_physics.Update(field, m_draw, delta_time);
