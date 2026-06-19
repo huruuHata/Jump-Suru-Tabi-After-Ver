@@ -138,7 +138,8 @@ void ResourceSetting::GameSetting(const bool bBlack_mode, const bool bBuild_mode
 		m_textures =
 		{
 			TEXTURE_CHIP_BLACK,
-			TEXTURE_BLACK_CHARA
+			TEXTURE_BLACK_CHARA,
+			TEXTURE_CONGRATULATION_GAME,
 		};
 	}
 	else
@@ -185,6 +186,9 @@ void ResourceSetting::ClearSetting()
 		TEXTURE_NEXT,
 		TEXTURE_CLEAR_BACK,
 		TEXTURE_CLEAR_TELOP,
+		TEXTURE_GAMECLEAR_BACK,
+		TEXTURE_GAMECLEAR,
+		TEXTURE_NEWMODE,
 	};
 
 	m_ses =

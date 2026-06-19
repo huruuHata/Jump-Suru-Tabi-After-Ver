@@ -35,7 +35,6 @@
 
 #include "System\\Engine\\Engine.h"
 
-
 //-----------------------------------------------------------------------------
 //Ｃ言語でのdefine、構造体などはこちらで宣言します。
 //-----------------------------------------------------------------------------
@@ -104,13 +103,11 @@ namespace KeyString
 	constexpr char* TEXTURE_BUILD_KEY_EXPLAIN = "Resource\\Texture\\Game\\Explain\\StageBuildMode\\BuildModeKeyExplain.png";
 	constexpr char* TEXTURE_BUILD_EXPLAIN = "Resource\\Texture\\Game\\Explain\\StageBuildMode\\BuildExplain.png";
 
-	//ステージクリアシーン
+	//クリアシーン
 
 	constexpr char* TEXTURE_NEXT = "Resource\\Texture\\Clear\\NextStage.png";
 	constexpr char* TEXTURE_CLEAR_BACK = "Resource\\Texture\\Clear\\StageClearBack.png";
 	constexpr char* TEXTURE_CLEAR_TELOP = "Resource\\Texture\\Clear\\StageClearTelop.png";
-
-	//ゲームクリアシーン
 
 	constexpr char* TEXTURE_GAMECLEAR_BACK = "Resource\\Texture\\Clear\\GameClearBack.png";
 	constexpr char* TEXTURE_GAMECLEAR = "Resource\\Texture\\Clear\\GameClear.png";

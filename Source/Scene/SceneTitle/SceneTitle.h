@@ -68,10 +68,14 @@ public:
 
 private:
 
+	void Decide(const bool bBlackMode, const bool bBuildMode);
+
 	TitleUI m_titleUI;
 
 	Timer m_timer_start_wait;
 
 	ResourceSetting& m_setting = ResourceSetting::getInstance();
 	GameSystem& m_system = GameSystem::getInstance();
+
+	bool bDecide;
 };

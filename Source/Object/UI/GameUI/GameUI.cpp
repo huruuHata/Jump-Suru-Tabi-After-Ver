@@ -25,6 +25,10 @@ void GameUI::Initialize(const bool bBlack_mode, const bool bBuild_mode)
 		BaseUI::InitializeImage(m_jump_explain, explain, "Jump");
 		BaseUI::InitializeImage(m_hit_explain, explain, "Hit");
 	}
+	else
+	{
+		BaseUI::InitializeImage(m_congratulations, explain, "Congratulations");
+	}
 
 	m_bDisplay_build_mode = true;
 }
@@ -52,6 +56,13 @@ void GameUI::Draw(Engine * pEngine, const int map_no, const bool bBlack_mode, co
 		if (map_no == 2)
 		{
 			BaseUI::Draw(pEngine, m_hit_explain);
+		}
+	}
+	else
+	{
+		if (map_no == 9)
+		{
+			BaseUI::Draw(pEngine, m_congratulations);
 		}
 	}
 }

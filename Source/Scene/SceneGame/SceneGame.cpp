@@ -89,7 +89,7 @@ void SceneGame::Update()
 
 		if (m_pEngine->GetKeyStateSync(DIK_F1))
 		{
-			m_nowSceneData.Set(SCENE_GAME);
+			m_nowSceneData.Set(SCENE_TITLE);
 		}
 	}
 }

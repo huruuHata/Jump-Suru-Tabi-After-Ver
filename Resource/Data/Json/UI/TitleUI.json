@@ -1,5 +1,6 @@
 {
-  "Back": {
+  "Back":
+   {
     "Filename": "Resource\\Texture\\Title\\WhiteBack.png",
 
     "Image": {
@@ -20,7 +21,8 @@
     "Alpha": 255
   },
 
-  "Start": {
+  "Start": 
+  {
     "Filename": "Resource\\Texture\\Title\\Start.png",
 
     "Image": {
@@ -41,7 +43,8 @@
     "Alpha": 0
   },
 
-  "Title": {
+  "Title":
+   {
     "Filename": "Resource\\Texture\\Title\\Title.png",
 
     "Image": {
@@ -84,7 +87,8 @@
   },
 
 
-  "BlackChara": {
+  "BlackChara":
+   {
     "Filename": "Resource\\Texture\\Title\\TitleBlackChara.png",
 
     "Image": {
@@ -100,6 +104,28 @@
     "Position": {
       "x": 64,
       "y": 64
+    },
+
+    "Alpha": 255
+  },
+
+  "Congratulations": 
+  {
+    "Filename": "Resource\\Texture\\Title\\CongratulationTitle.png",
+
+    "Image": {
+      "Width": 800,
+      "Height": 64
+    },
+
+    "Draw": {
+      "Width": 800,
+      "Height": 64
+    },
+
+    "Position": {
+      "x": 12,
+      "y": 12
     },
 
     "Alpha": 255

@@ -21,6 +21,8 @@ private:
 	UIData m_key_explain;
 	UIData m_hit_explain;
 
+	UIData m_congratulations;
+
 	//ステージビルドモード用
 	UIData m_build_explain;
 	UIData m_build_key_explain;

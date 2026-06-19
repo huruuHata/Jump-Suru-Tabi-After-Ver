@@ -50,10 +50,48 @@ void SceneClear::Update()
 
 	if (m_pEngine->GetKeyStateSync(DIK_RETURN))
 	{
-		//CLEAR画面→NEXTSTAGE画面
+		if (!m_system.GetBlackMode())
+		{
+			//STAGECLEAR画面→GAMECLEAR画面→NEWMODE説明画面(しろステージクリア)
+
+			if (m_gameData.map_no >= m_gameData.map_max)
+			{
+				if (!m_clearUI.IsGameClearDisplay())
+				{
+					m_clearUI.SetGameClearDisplayTrue();
+					m_pEngine->PlaySE(SE_GAMECLEAR);
+				}
+				else if (m_clearUI.IsGameClearFadeInFinish() && m_clearUI.IsNewModeDisplay())
+				{
+					m_nowSceneData.Set(SCENE_TITLE);
+				}
+				else
+				{
+					m_system.SetGameClearTrue();
+					m_clearUI.SetNewModeDisplayTrue();
+				}
+			}
+		}
+		else
+		{
+			//STAGECLEAR画面→GAMECLEAR画面(くろステージクリア)
+
+			if (!m_clearUI.IsGameClearDisplay())
+			{
+				m_clearUI.SetGameClearDisplayTrue();
+				m_system.SetAllGameClearTrue();
+				m_pEngine->PlaySE(SE_GAMECLEAR);
+			}
+			else if(m_clearUI.IsGameClearFadeInFinish())
+			{
+				m_nowSceneData.Set(SCENE_TITLE);
+			}
+		}
+
+		//STAGECLEAR画面→NEXTSTAGE画面
 
 		//NEXTSTAGE画面であれば次のステージ
-		if (m_clearUI.IsNextStageDisplay())
+		if (m_clearUI.IsNextStageDisplay() && m_gameData.map_no < m_gameData.map_max)
 		{
 			m_gameData.map_no++;
 

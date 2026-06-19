@@ -36,5 +36,6 @@ namespace Common
 	struct CommonData {
 
 		int map_no;
+		int map_max;
 	};
 }

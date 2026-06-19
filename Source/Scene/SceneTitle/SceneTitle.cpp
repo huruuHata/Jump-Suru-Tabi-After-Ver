@@ -39,6 +39,10 @@ void SceneTitle::Start()
 	m_setting.SceneResourceSetting(m_pEngine, SCENE_TITLE);
 
 	m_pEngine->PlayBGM();
+
+	m_gameData.map_no = 0;
+
+	bDecide = false;
 }
 
 //=============================================================================
@@ -49,28 +53,15 @@ void SceneTitle::Update()
 	m_titleUI.Update(m_pEngine);
 
 	//通常モード
-	if (m_pEngine->GetKeyStateSync(DIK_RETURN))
-	{
-		m_system.SetGameMode(false, false);
+	if (m_pEngine->GetKeyStateSync(DIK_RETURN)) Decide(false, false);
 
-		m_pEngine->PlaySE(SE_DECIDE);
-		m_timer_start_wait.SetInterval(350);
-	}
-	//ブラックモード
-	if (m_pEngine->GetKeyStateSync(DIK_K))
+	else if (!bDecide && m_system.GetGameClear())
 	{
-		m_system.SetGameMode(true, false);
+		//ブラックモード
+		if (m_pEngine->GetKeyStateSync(DIK_K)) Decide(true, false);
 
-		m_pEngine->PlaySE(SE_DECIDE);
-		m_timer_start_wait.SetInterval(350);
-	}
-	//ステージビルドモード
-	if (m_pEngine->GetKeyStateSync(DIK_S))
-	{
-		m_system.SetGameMode(false, true);
-
-		m_pEngine->PlaySE(SE_DECIDE);
-		m_timer_start_wait.SetInterval(350);
+		//ステージビルドモード
+		else if (m_pEngine->GetKeyStateSync(DIK_S)) Decide(false, true);
 	}
 
 	if (m_timer_start_wait.GetTiming())
@@ -86,7 +77,7 @@ void SceneTitle::Draw()
 {
 	m_pEngine->SpriteBegin();
 
-	m_titleUI.Draw(m_pEngine);
+	m_titleUI.Draw(m_pEngine, m_system.GetAllGameClear());
 
 	m_pEngine->SpriteEnd();
 }
@@ -113,6 +104,15 @@ void SceneTitle::PreparePostEffect()
 void SceneTitle::PostEffectForBeginners()
 {
 
+}
+
+void SceneTitle::Decide(const bool bBlackMode, const bool bBuildMode)
+{
+	m_system.SetGameMode(bBlackMode, bBuildMode);
+	m_pEngine->PlaySE(SE_DECIDE);
+	m_timer_start_wait.SetInterval(350);
+
+	bDecide = true;
 }
 
 #ifndef IMGUI_DISABLE

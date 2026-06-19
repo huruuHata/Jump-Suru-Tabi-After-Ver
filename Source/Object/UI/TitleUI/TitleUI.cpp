@@ -29,6 +29,9 @@ TitleUI::TitleUI()
     //タイトルボード
 	BaseUI::InitializeImage(m_title_board, data, "Title");
 
+	//ゲーム全クリアお祝い
+	BaseUI::InitializeImage(m_congratulations, data, "Congratulations");
+	
 	m_bAlpha_max = false;
 	m_bAlpha_min = true;
 }
@@ -40,13 +43,16 @@ void TitleUI::Update(Engine * pEngine)
 	TextBreathing();
 }
 
-void TitleUI::Draw(Engine * pEngine)
+void TitleUI::Draw(Engine * pEngine, const bool is_game_all_clear)
 {
 	BaseUI::Draw(pEngine, m_back);
 	BaseUI::Draw(pEngine, m_white_chara);
 	BaseUI::Draw(pEngine, m_black_chara);
 	BaseUI::Draw(pEngine, m_start);
 	BaseUI::Draw(pEngine, m_title_board);
+
+	if(is_game_all_clear) BaseUI::Draw(pEngine, m_congratulations);
+
 }
 
 void TitleUI::TitleBoardDrop()

@@ -10,7 +10,7 @@ public:
 	TitleUI();
 
 	void Update(Engine* pEngine);
-	void Draw(Engine* pEngine);
+	void Draw(Engine* pEngine, const bool is_game_all_clear);
 
 private:
 
@@ -23,6 +23,7 @@ private:
 	UIData m_black_chara;
 	UIData m_title_board;
 	UIData m_start;
+	UIData m_congratulations;
 
 	bool m_bAlpha_max;
 	bool m_bAlpha_min;

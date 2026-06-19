@@ -1,7 +1,8 @@
 {
   "Explain": 
   {
-    "Fall": {
+    "Fall": 
+    {
       "Filename": "Resource\\Texture\\Game\\Explain\\Game\\FallExplain.png",
 
       "Image": {
@@ -22,7 +23,8 @@
       "Alpha": 255
     },
 
-    "Jump": {
+    "Jump":
+     {
       "Filename": "Resource\\Texture\\Game\\Explain\\Game\\JumpExplain.png",
 
       "Image": {
@@ -43,7 +45,8 @@
       "Alpha": 255
     },
 
-    "Key": {
+    "Key": 
+    {
       "Filename": "Resource\\Texture\\Game\\Explain\\Game\\KeyExplain.png",
 
       "Image": {
@@ -64,7 +67,8 @@
       "Alpha": 255
     },
 
-    "Goal": {
+    "Goal": 
+    {
       "Filename": "Resource\\Texture\\Game\\Explain\\Game\\GoalExplain.png",
 
       "Image": {
@@ -85,7 +89,8 @@
       "Alpha": 255
     },
 
-    "Hit": {
+    "Hit":
+     {
       "Filename": "Resource\\Texture\\Game\\Explain\\Game\\HitExplain.png",
 
       "Image": {
@@ -106,7 +111,8 @@
       "Alpha": 255
     },
 
-    "Build": {
+    "Build": 
+    {
       "Filename": "Resource\\Texture\\Game\\Explain\\StageBuildMode\\BuildExplain.png",
 
       "Image": {
@@ -127,7 +133,8 @@
       "Alpha": 255
     },
 
-    "BuildKey": {
+    "BuildKey": 
+    {
       "Filename": "Resource\\Texture\\Game\\Explain\\StageBuildMode\\BuildModeKeyExplain.png",
 
       "Image": {
@@ -143,6 +150,28 @@
       "Position": {
         "x": 20,
         "y": 506
+      },
+
+      "Alpha": 255
+    },
+
+    "Congratulations":
+     {
+      "Filename": "Resource\\Texture\\Game\\CongratulationGame.png",
+
+      "Image": {
+        "Width": 128,
+        "Height": 64
+      },
+
+      "Draw": {
+        "Width": 128,
+        "Height": 64
+      },
+
+      "Position": {
+        "x": 90,
+        "y": 90
       },
 
       "Alpha": 255
