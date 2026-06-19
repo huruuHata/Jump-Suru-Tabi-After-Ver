@@ -5,8 +5,6 @@
 
 #include <fstream>
 
-using namespace std;
-
 using json = nlohmann::json;
 
 class FileCheck
