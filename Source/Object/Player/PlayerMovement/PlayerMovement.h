@@ -7,6 +7,7 @@
 #include "..\\..\\Base\\BaseObject\\BaseObject.h"
 #include "..\\PlayerInput\\PlayerInput.h"
 #include "..\\..\\Engine\\Vector2Int\\Vector2Int.h"
+#include "..\\..\\Stage\\Stage.h"
 
 class PlayerMovement 
 {
@@ -37,9 +38,7 @@ private:
 	};
 
 	bool CanMoveX(const Field& field, const int next_pixel_x, BaseObject::DrawSet& draw);
-	int ToMapX(int pixel_x) const;
-	int ToMapY(int pixel_y) const;
-
+	
 	int m_look_dir;
 
 	int m_block_width;

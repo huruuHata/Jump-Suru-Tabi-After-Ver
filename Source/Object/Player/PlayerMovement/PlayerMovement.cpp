@@ -66,9 +66,9 @@ bool PlayerMovement::IsGameover() const
 
 bool PlayerMovement::CanMoveX(const Field& field, const int next_pixel_x, BaseObject::DrawSet& draw)
 {
-	int map_x = ToMapX(next_pixel_x);
-	int top_y = ToMapY(draw.position.y);
-	int bottom_y = ToMapY(draw.position.y + m_block_height - 1);
+	int map_x = Stage::ToMapX(next_pixel_x, m_block_width);
+	int top_y = Stage::ToMapY(draw.position.y, m_block_height);
+	int bottom_y = Stage::ToMapY(draw.position.y + m_block_height - 1, m_block_height);
 
 	for (int y = top_y; y <= bottom_y; y++)
 	{
@@ -89,14 +89,4 @@ bool PlayerMovement::CanMoveX(const Field& field, const int next_pixel_x, BaseOb
 	}
 
 	return true;
-}
-
-//ピクセル座標をマップ座標に変換
-int PlayerMovement::ToMapX(int pixel_x) const
-{
-	return pixel_x / m_block_width;
-}
-int PlayerMovement::ToMapY(int pixel_y) const
-{
-	return pixel_y / m_block_height;
 }

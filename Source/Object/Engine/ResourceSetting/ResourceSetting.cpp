@@ -120,7 +120,6 @@ void ResourceSetting::TitleSetting()
 		TEXTURE_TITLE_BLACK,
 		TEXTURE_BACK,
 		TEXTURE_CONGRATULATION_TITLE,
-		TEXTURE_ENDROLL,
 	};
 
 	m_bgm = BGM_TITLE;
@@ -210,14 +209,4 @@ void ResourceSetting::GameoverSetting()
 	{
 		SE_GAMEOVER,
 	};
-}
-
-void ResourceSetting::EndrollSetting()
-{
-	m_textures =
-	{
-		TEXTURE_ENDROLL,
-	};
-
-	m_bgm = BGM_END;
 }

@@ -127,10 +127,6 @@ namespace KeyString
 	constexpr char* TEXTURE_GAMEOVER_BACK = "Resource\\Texture\\Gameover\\GameoverBack.png";
 	constexpr char* TEXTURE_GAMEOVER = "Resource\\Texture\\Gameover\\Gameover.png";
 
-	//エンドロールシーン
-
-	constexpr char* TEXTURE_ENDROLL = "Resource\\Texture\\EndRoll.png";
-
 	//****************
 	// ＢＧＭ
 	//****************
@@ -138,8 +134,7 @@ namespace KeyString
 	constexpr char* BGM_TITLE = "Resource\\BGM\\Title.wav";
 	constexpr char* BGM_WHITE = "Resource\\BGM\\ShiromotiJump.wav";
 	constexpr char* BGM_BLACK = "Resource\\BGM\\KuromotiJump.wav";
-	constexpr char* BGM_END = "Resource\\BGM\\ENDROLL.wav";
-
+	
 	//****************
 	// ＳＥ
 	//****************

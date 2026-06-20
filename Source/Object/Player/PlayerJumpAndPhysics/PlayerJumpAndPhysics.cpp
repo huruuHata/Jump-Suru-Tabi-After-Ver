@@ -77,9 +77,9 @@ void PlayerJumpAndPhysics::JumpCheck(Engine* pEngine, BaseObject::DrawSet& draw,
 
 bool PlayerJumpAndPhysics::CheckGround(const Field& field, int& ground_y, BaseObject::DrawSet& draw)
 {
-	int left_x = ToMapX(draw.position.x);
-	int right_x = ToMapX(draw.position.x + m_block_width - 1);
-	int map_y = ToMapY(draw.position.y + m_block_height);
+	int left_x = Stage::ToMapX(draw.position.x, m_block_width);
+	int right_x = Stage::ToMapX(draw.position.x + m_block_width - 1, m_block_width);
+	int map_y = Stage::ToMapY(draw.position.y + m_block_height, m_block_height);
 
 	bool hit_left = field.map[map_y][left_x] >= CANT_PASS;
 	bool hit_right = field.map[map_y][right_x] >= CANT_PASS;
@@ -134,9 +134,9 @@ void PlayerJumpAndPhysics::Falling(const Field& field, BaseObject::DrawSet& draw
 		m_bGrounded = true;
 	}
 
-	int left_x = ToMapX(draw.position.x);
-	int right_x = ToMapX(draw.position.x + m_block_width - 1);
-	int map_y = ToMapY(draw.position.y + m_block_height);
+	int left_x = Stage::ToMapX(draw.position.x, m_block_width);
+	int right_x = Stage::ToMapX(draw.position.x + m_block_width - 1, m_block_width);
+	int map_y = Stage::ToMapY(draw.position.y + m_block_height, m_block_height);
 
 	if (field.map[map_y][left_x] == GOAL || field.map[map_y][right_x] == GOAL)
 	{
@@ -162,9 +162,9 @@ void PlayerJumpAndPhysics::UpCheck(const Field& field, BaseObject::DrawSet& draw
 {
 	//上との衝突
 
-	int left_x = ToMapX(draw.position.x);
-	int right_x = ToMapX(draw.position.x + m_block_width - 1);
-	int map_y = ToMapY(draw.position.y);
+	int left_x = Stage::ToMapX(draw.position.x, m_block_width);
+	int right_x = Stage::ToMapX(draw.position.x + m_block_width - 1, m_block_width);
+	int map_y = Stage::ToMapY(draw.position.y, m_block_height);
 
 	if (field.map[map_y][left_x] >= CANT_PASS || field.map[map_y][right_x] >= CANT_PASS)
 	{
@@ -178,12 +178,3 @@ void PlayerJumpAndPhysics::UpCheck(const Field& field, BaseObject::DrawSet& draw
 	}
 }
 
-//ピクセル座標をマップ座標に変換
-int PlayerJumpAndPhysics::ToMapX(int pixel_x) const
-{
-	return pixel_x / m_block_width;
-}
-int PlayerJumpAndPhysics::ToMapY(int pixel_y) const
-{
-	return pixel_y / m_block_height;
-}

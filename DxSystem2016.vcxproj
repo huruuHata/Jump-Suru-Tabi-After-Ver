@@ -166,7 +166,6 @@
     <ClCompile Include="Source\Object\Stage\Back\Back.cpp" />
     <ClCompile Include="Source\Object\Stage\Stage.cpp" />
     <ClCompile Include="Source\Object\UI\ClearUI\ClearUI.cpp" />
-    <ClCompile Include="Source\Object\UI\EndrollUI\EndrollUI.cpp" />
     <ClCompile Include="Source\Object\UI\GameoverUI\GameoverUI.cpp" />
     <ClCompile Include="Source\Object\UI\GameUI\GameUI.cpp" />
     <ClCompile Include="Source\Object\UI\TitleUI\TitleUI.cpp" />
@@ -243,7 +242,6 @@
     <ClInclude Include="Source\Object\Stage\Back\Back.h" />
     <ClInclude Include="Source\Object\Stage\Stage.h" />
     <ClInclude Include="Source\Object\UI\ClearUI\ClearUI.h" />
-    <ClInclude Include="Source\Object\UI\EndrollUI\EndrollUI.h" />
     <ClInclude Include="Source\Object\UI\GameoverUI\GameoverUI.h" />
     <ClInclude Include="Source\Object\UI\GameUI\GameUI.h" />
     <ClInclude Include="Source\Object\UI\TitleUI\TitleUI.h" />

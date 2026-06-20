@@ -80,6 +80,16 @@ int Stage::GetBlockHeight()
 	return m_draw.draw_height;
 }
 
+//ピクセル座標をマップ座標に変換
+int Stage::ToMapX(int pixel_x, int block_width)
+{
+	return pixel_x / block_width;
+}
+int Stage::ToMapY(int pixel_y, int block_height)
+{
+	return pixel_y / block_height;
+}
+
 void Stage::FileSetting(json& data, const bool bBlack_mode, const bool bBuild_mode, const int map_no)
 {
 	string filename;

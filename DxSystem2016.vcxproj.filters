@@ -130,9 +130,6 @@
     <Filter Include="Object\UI\ClearUI">
       <UniqueIdentifier>{f5f7f0a1-947d-4b40-83c4-15412013a5c4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\UI\EndrollUI">
-      <UniqueIdentifier>{539e4aff-b06b-4356-8cf6-7c46b0d1af07}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\Player">
       <UniqueIdentifier>{d26c9970-ec79-4720-ab90-4f357d0baad5}</UniqueIdentifier>
     </Filter>
@@ -347,9 +344,6 @@
     </ClCompile>
     <ClCompile Include="Source\Object\UI\ClearUI\ClearUI.cpp">
       <Filter>Object\UI\ClearUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Object\UI\EndrollUI\EndrollUI.cpp">
-      <Filter>Object\UI\EndrollUI</Filter>
     </ClCompile>
     <ClCompile Include="Source\Object\Engine\ResourceSetting\ResourceSetting.cpp">
       <Filter>Object\Engine\ResourceSetting</Filter>
@@ -586,9 +580,6 @@
     </ClInclude>
     <ClInclude Include="Source\Object\UI\ClearUI\ClearUI.h">
       <Filter>Object\UI\ClearUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Object\UI\EndrollUI\EndrollUI.h">
-      <Filter>Object\UI\EndrollUI</Filter>
     </ClInclude>
     <ClInclude Include="Source\Object\Engine\ResourceSetting\ResourceSetting.h">
       <Filter>Object\Engine\ResourceSetting</Filter>

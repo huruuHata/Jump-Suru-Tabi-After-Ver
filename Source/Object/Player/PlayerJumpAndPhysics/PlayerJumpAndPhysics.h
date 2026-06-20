@@ -7,6 +7,7 @@
 #include "..\\..\\Engine\\Vector2Int\\Vector2Int.h"
 #include "..\\..\\Engine\\FileCheck\\FileCheck.h"
 #include "..\\..\\Base\\BaseObject\\BaseObject.h"
+#include "..\\..\\Stage\\Stage.h"
 
 class PlayerJumpAndPhysics
 {
@@ -39,9 +40,6 @@ private:
 	void UpCheck(const Field& field, BaseObject::DrawSet& draw);
 
 	bool CheckGround(const Field& field, int& ground_y, BaseObject::DrawSet& draw);
-
-	int ToMapX(int pixel_x) const;
-	int ToMapY(int pixel_y) const;
 
 	bool m_bGrounded;
 	bool m_bJumping;

@@ -20,6 +20,9 @@ public:
 	int GetBlockWidth();
 	int GetBlockHeight();
 
+	static int ToMapX(int pixel_x, int block_width);
+	static int ToMapY(int pixel_y, int block_height);
+
 private:
 
 	void FileSetting(json& data, const bool bBlack_mode, const bool bBuild_mode, const int map_no);
