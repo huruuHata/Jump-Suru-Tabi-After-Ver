@@ -53,15 +53,19 @@ void SceneTitle::Update()
 	m_titleUI.Update(m_pEngine);
 
 	//通常モード
-	if (m_pEngine->GetKeyStateSync(DIK_RETURN)) Decide(false, false);
 
-	else if (!bDecide && m_system.GetGameClear())
+	if (!bDecide)
 	{
-		//ブラックモード
-		if (m_pEngine->GetKeyStateSync(DIK_K)) Decide(true, false);
+		if (m_pEngine->GetKeyStateSync(DIK_RETURN)) Decide(false, false);
 
-		//ステージビルドモード
-		else if (m_pEngine->GetKeyStateSync(DIK_S)) Decide(false, true);
+		else if (m_system.GetGameClear())
+		{
+			//ブラックモード
+			if (m_pEngine->GetKeyStateSync(DIK_K)) Decide(true, false);
+
+			//ステージビルドモード
+			else if (m_pEngine->GetKeyStateSync(DIK_S)) Decide(false, true);
+		}
 	}
 
 	if (m_timer_start_wait.GetTiming())
