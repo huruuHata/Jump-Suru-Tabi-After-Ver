@@ -1,5 +1,5 @@
 ﻿
-//プレイヤーの動きの信号を送る(歩き、回転、しゃがみ、ダッシュ)
+//プレイヤーの動きの信号を送る
 
 #pragma once
 
@@ -7,7 +7,7 @@
 #include "..\\..\\Base\\BaseObject\\BaseObject.h"
 #include "..\\PlayerInput\\PlayerInput.h"
 #include "..\\..\\Engine\\Vector2Int\\Vector2Int.h"
-#include "..\\..\\Stage\\Stage.h"
+#include "..\\..\\Player\\PlayerCollide\\PlayerCollide.h"
 
 class PlayerMovement 
 {
@@ -38,12 +38,14 @@ private:
 	};
 
 	bool CanMoveX(const Field& field, const int next_pixel_x, BaseObject::DrawSet& draw);
-	
+
+	bool m_bGoal;
+	bool m_bGameover;
+
 	int m_look_dir;
 
 	int m_block_width;
 	int m_block_height;
 
-	bool m_bGoal;
-	bool m_bGameover;
+	PlayerCollide m_collide;
 };

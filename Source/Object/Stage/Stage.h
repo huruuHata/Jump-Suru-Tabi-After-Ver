@@ -23,6 +23,16 @@ public:
 	static int ToMapX(int pixel_x, int block_width);
 	static int ToMapY(int pixel_y, int block_height);
 
+	enum
+	{
+		STAGE = 0,
+		GOAL = 1,
+		CANT_PASS = 2,
+		BLOCK = 3,
+		JAGGED_UP = 4,
+		JAGGED_DOWN = 5,
+	};
+
 private:
 
 	void FileSetting(json& data, const bool bBlack_mode, const bool bBuild_mode, const int map_no);

@@ -1,5 +1,4 @@
-﻿
-#define _USING_V110_SDK71_ 1
+﻿#define _USING_V110_SDK71_ 1
 
 #include "PlayerJumpAndPhysics.h"
 
@@ -75,28 +74,18 @@ void PlayerJumpAndPhysics::JumpCheck(Engine* pEngine, BaseObject::DrawSet& draw,
 	}
 }
 
-bool PlayerJumpAndPhysics::CheckGround(const Field& field, int& ground_y, BaseObject::DrawSet& draw)
+void PlayerJumpAndPhysics::Jumping(const Field& field, BaseObject::DrawSet& draw, const float delta_time)
 {
-	int left_x = Stage::ToMapX(draw.position.x, m_block_width);
-	int right_x = Stage::ToMapX(draw.position.x + m_block_width - 1, m_block_width);
-	int map_y = Stage::ToMapY(draw.position.y + m_block_height, m_block_height);
+	draw.position.y -= (int)(m_jump_speed * delta_time);
 
-	bool hit_left = field.map[map_y][left_x] >= CANT_PASS;
-	bool hit_right = field.map[map_y][right_x] >= CANT_PASS;
-
-	if (field.map[map_y][left_x] == JAGGED || field.map[map_y][right_x] == JAGGED)
+	if (m_save_height - draw.position.y >= m_jump_power)
 	{
-		m_bGameover = true;
+		m_bJumping = false;
 	}
-
-	//着地
-	if (hit_left || hit_right)
+	else
 	{
-		ground_y = (map_y - 1) * draw.draw_height;
-		return true;
+		UpCheck(field, draw);
 	}
-
-	return false;
 }
 
 void PlayerJumpAndPhysics::GroundProcess(const Field& field, BaseObject::DrawSet& draw)
@@ -134,27 +123,11 @@ void PlayerJumpAndPhysics::Falling(const Field& field, BaseObject::DrawSet& draw
 		m_bGrounded = true;
 	}
 
-	int left_x = Stage::ToMapX(draw.position.x, m_block_width);
-	int right_x = Stage::ToMapX(draw.position.x + m_block_width - 1, m_block_width);
-	int map_y = Stage::ToMapY(draw.position.y + m_block_height, m_block_height);
+	int result = m_collide.CheckVertical(field, draw.position.x, draw.position.x + m_block_width - 1, draw.position.y + m_block_height, m_block_width, m_block_height);
 
-	if (field.map[map_y][left_x] == GOAL || field.map[map_y][right_x] == GOAL)
+	if (result == Stage::GOAL)
 	{
 		m_bGoal = true;
-	}
-}
-
-void PlayerJumpAndPhysics::Jumping(const Field& field, BaseObject::DrawSet& draw, const float delta_time)
-{
-	draw.position.y -= (int)(m_jump_speed * delta_time);
-
-	if (m_save_height - draw.position.y >= m_jump_power)
-	{
-		m_bJumping = false;
-	}
-	else
-	{
-		UpCheck(field, draw);
 	}
 }
 
@@ -162,13 +135,13 @@ void PlayerJumpAndPhysics::UpCheck(const Field& field, BaseObject::DrawSet& draw
 {
 	//上との衝突
 
-	int left_x = Stage::ToMapX(draw.position.x, m_block_width);
-	int right_x = Stage::ToMapX(draw.position.x + m_block_width - 1, m_block_width);
 	int map_y = Stage::ToMapY(draw.position.y, m_block_height);
 
-	if (field.map[map_y][left_x] >= CANT_PASS || field.map[map_y][right_x] >= CANT_PASS)
+	int result = m_collide.CheckVertical(field, draw.position.x, draw.position.x + m_block_width - 1, draw.position.y, m_block_width, m_block_height);
+
+	if (result >= Stage::CANT_PASS)
 	{
-		if (field.map[map_y][left_x] == JAGGED || field.map[map_y][right_x] == JAGGED)
+		if (result == Stage::JAGGED_UP)
 		{
 			m_bGameover = true;
 		}
@@ -178,3 +151,23 @@ void PlayerJumpAndPhysics::UpCheck(const Field& field, BaseObject::DrawSet& draw
 	}
 }
 
+bool PlayerJumpAndPhysics::CheckGround(const Field& field, int& ground_y, BaseObject::DrawSet& draw)
+{
+	int map_y = Stage::ToMapY(draw.position.y + m_block_height, m_block_height);
+
+	int result = m_collide.CheckVertical(field, draw.position.x, draw.position.x + m_block_width - 1, draw.position.y + m_block_height, m_block_width, m_block_height);
+
+	if (result >= Stage::CANT_PASS)
+	{
+		if (result == Stage::JAGGED_DOWN)
+		{
+			m_bGameover = true;
+		}
+
+		//着地
+		ground_y = (map_y - 1) * draw.draw_height;
+		return true;
+	}
+
+	return false;
+}

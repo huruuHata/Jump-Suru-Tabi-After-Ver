@@ -153,7 +153,6 @@
     <ClCompile Include="Source\Object\Base\BaseUI\BaseUI.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Source\Object\Engine\Collide\Collide.cpp" />
     <ClCompile Include="Source\Object\Engine\DeltaTime\DeltaTime.cpp" />
     <ClCompile Include="Source\Object\Engine\FileCheck\FileCheck.cpp" />
     <ClCompile Include="Source\Object\Engine\GameSystem\GameSystem.cpp" />
@@ -228,7 +227,6 @@
     <ClInclude Include="Source\GameData.h" />
     <ClInclude Include="Source\Object\Base\BaseObject\BaseObject.h" />
     <ClInclude Include="Source\Object\Base\BaseUI\BaseUI.h" />
-    <ClInclude Include="Source\Object\Engine\Collide\Collide.h" />
     <ClInclude Include="Source\Object\Engine\DeltaTime\DeltaTime.h" />
     <ClInclude Include="Source\Object\Engine\FileCheck\FileCheck.h" />
     <ClInclude Include="Source\Object\Engine\GameSystem\GameSystem.h" />

@@ -7,7 +7,7 @@
 #include "..\\..\\Engine\\Vector2Int\\Vector2Int.h"
 #include "..\\..\\Engine\\FileCheck\\FileCheck.h"
 #include "..\\..\\Base\\BaseObject\\BaseObject.h"
-#include "..\\..\\Stage\\Stage.h"
+#include "..\\..\\Player\\PlayerCollide\\PlayerCollide.h"
 
 class PlayerJumpAndPhysics
 {
@@ -43,7 +43,10 @@ private:
 
 	bool m_bGrounded;
 	bool m_bJumping;
-	
+
+	bool m_bGoal;
+	bool m_bGameover;
+
 	int m_jump_speed;
 	int m_jump_power;
 	int m_save_height;
@@ -54,6 +57,5 @@ private:
 	int m_block_width;
 	int m_block_height;
 
-	bool m_bGoal;
-	bool m_bGameover;
+	PlayerCollide m_collide;
 };

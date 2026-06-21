@@ -37,8 +37,6 @@ void Player::Initialize(const bool bBlack_mode, const int block_width, const int
 
 	m_jump_physics.Initialize(m_data, m_block_width, m_block_height);
 	m_movement.Initialize(m_block_width, m_block_height);
-
-	m_collide.Initialize();
 }
 
 void Player::Update(Engine * pEngine, const Field& field, const bool bBlack_mode, const float delta_time)
@@ -47,8 +45,6 @@ void Player::Update(Engine * pEngine, const Field& field, const bool bBlack_mode
 
 	Move(pEngine, field, delta_time);
 	JumpAndPhysics(pEngine, field, bBlack_mode, delta_time);
-
-	m_collide.Update();
 }
 
 bool Player::IsGoal() const

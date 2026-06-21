@@ -1,5 +1,4 @@
-﻿
-#define _USING_V110_SDK71_ 1
+﻿#define _USING_V110_SDK71_ 1
 
 #include "PlayerMovement.h"
 
@@ -25,11 +24,11 @@ PlayerMovement::Output PlayerMovement::Update(const Field& field, BaseObject::Dr
 
 	if (key_flag & PlayerInput::UP_KEY)    m_look_dir = UP;
 	if (key_flag & PlayerInput::DOWN_KEY)  m_look_dir = DOWN;
-	
+
 	if (key_flag & PlayerInput::LEFT_KEY)
 	{
 		m_look_dir = LEFT;
-	    int next_x = (int)(draw.position.x - move_speed * delta_time);
+		int next_x = (int)(draw.position.x - move_speed * delta_time);
 
 		if (CanMoveX(field, next_x, draw))
 		{
@@ -50,7 +49,7 @@ PlayerMovement::Output PlayerMovement::Update(const Field& field, BaseObject::Dr
 	}
 
 	out.look_dir = m_look_dir;
- 
+
 	return out;
 }
 
@@ -66,26 +65,16 @@ bool PlayerMovement::IsGameover() const
 
 bool PlayerMovement::CanMoveX(const Field& field, const int next_pixel_x, BaseObject::DrawSet& draw)
 {
-	int map_x = Stage::ToMapX(next_pixel_x, m_block_width);
-	int top_y = Stage::ToMapY(draw.position.y, m_block_height);
-	int bottom_y = Stage::ToMapY(draw.position.y + m_block_height - 1, m_block_height);
+	int result = m_collide.CheckHorizontal(field, next_pixel_x, draw.position.y, draw.position.y + m_block_height - 1, m_block_width, m_block_height);
 
-	for (int y = top_y; y <= bottom_y; y++)
+	if (result >= Stage::CANT_PASS)
 	{
-		if (field.map[y][map_x] >= CANT_PASS)
-		{
-			return false;
-		}
+		return false;
+	}
 
-		if (field.map[y][map_x] == JAGGED)
-		{
-			m_bGameover = true;
-		}
-
-		if (field.map[y][map_x] == GOAL)
-		{
-			m_bGoal = true;
-		}
+	if (result == Stage::GOAL)
+	{
+		m_bGoal = true;
 	}
 
 	return true;
