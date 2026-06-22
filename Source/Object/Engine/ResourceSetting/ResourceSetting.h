@@ -1,5 +1,5 @@
 ﻿
-//シーンごとにTexture,フォント,SE,BGMのセットを行い、Add,Releaseを行う
+//シーンごとにTexture,SE,BGMのセットを行い、Add,Releaseを行う
 
 #pragma once
 
@@ -24,12 +24,10 @@ public:
 private:
 
 	void AddTextures(Engine* pEngine);
-	void AddFont(Engine* pEngine);
 	void AddSE(Engine* pEngine);
 	void AddBGM(Engine* pEngine);
 
 	void ReleaseTextures(Engine* pEngine);
-	void ReleaseFont(Engine* pEngine);
 	void ReleaseSE(Engine* pEngine);
 	void ReleaseBGM(Engine* pEngine);
 

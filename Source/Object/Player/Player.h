@@ -1,4 +1,6 @@
 ﻿
+//プレイヤーの動きを他クラスからもらい、反映する
+
 #pragma once
 
 #include "..\\..\\Object\\Base\\BaseObject\\BaseObject.h"

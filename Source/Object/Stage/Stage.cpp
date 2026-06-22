@@ -50,6 +50,7 @@ void Stage::Draw(Engine* pEngine)
 	}
 }
 
+//マップデータからプレイヤーの初期位置を取得
 Vector2Int Stage::GetStartPlayerPosition()
 {
 	return m_start_pos;
@@ -135,6 +136,7 @@ void Stage::FileSetting(json& data, const bool bBlack_mode, const bool bBuild_mo
 	ifs_map.close();
 }
 
+//ステージビルドモード用
 void Stage::StageBuild(Engine* pEngine)
 {
 	if (pEngine->GetKeyStateSync(DIK_0))

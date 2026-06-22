@@ -1,4 +1,6 @@
 ﻿
+//背景の初期化
+
 #pragma once
 
 #include "..\\..\\..\\Object\\Base\\BaseObject\\BaseObject.h"

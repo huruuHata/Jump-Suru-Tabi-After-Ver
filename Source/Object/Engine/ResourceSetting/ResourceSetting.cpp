@@ -44,7 +44,6 @@ void ResourceSetting::SceneResourceSetting(Engine* pEngine, const int scene_num,
 		break;
 	}
 
-	AddFont(pEngine);
 	AddTextures(pEngine);
 	AddSE(pEngine);
 	AddBGM(pEngine);
@@ -53,7 +52,6 @@ void ResourceSetting::SceneResourceSetting(Engine* pEngine, const int scene_num,
 void ResourceSetting::SceneResourceRelease(Engine* pEngine)
 {
 	ReleaseTextures(pEngine);
-	ReleaseFont(pEngine);
 	ReleaseSE(pEngine);
 	ReleaseBGM(pEngine);
 }
@@ -64,11 +62,6 @@ void ResourceSetting::AddTextures(Engine* pEngine)
 	{
 		pEngine->AddTexture(texture);
 	}
-}
-
-void ResourceSetting::AddFont(Engine * pEngine)
-{
-	if (!m_font.empty()) pEngine->AddFont(m_font);
 }
 
 void ResourceSetting::AddSE(Engine * pEngine)
@@ -90,11 +83,6 @@ void ResourceSetting::ReleaseTextures(Engine * pEngine)
 	{
 		pEngine->ReleaseTexture(texture);
 	}
-}
-
-void ResourceSetting::ReleaseFont(Engine * pEngine)
-{
-	if (!m_font.empty()) pEngine->ReleaseFont(m_font);
 }
 
 void ResourceSetting::ReleaseSE(Engine * pEngine)

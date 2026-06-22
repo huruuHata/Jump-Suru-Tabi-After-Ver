@@ -1,4 +1,7 @@
-﻿#pragma once
+﻿
+//JSONファイルが開けるか確認を行う
+
+#pragma once
 
 #include "..\\..\\..\\GameBase.h"
 #include "..\\..\\nlohmann\json.hpp"
@@ -18,7 +21,6 @@ public:
 	}
 
 	static const json FileOpenCheck(std::string json_file_name);
-	static const void FileCheck::TextFileOpenCheck(std::string text_file_name, std::vector<std::string>& out_texts);
 	
 private:
 

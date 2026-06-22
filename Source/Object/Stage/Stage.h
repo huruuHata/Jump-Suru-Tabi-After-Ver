@@ -1,4 +1,6 @@
 ﻿
+//ステージの初期化、
+
 #pragma once
 
 #include<fstream>

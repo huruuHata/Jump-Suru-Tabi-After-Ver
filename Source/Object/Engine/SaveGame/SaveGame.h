@@ -1,4 +1,7 @@
-﻿#pragma once
+﻿
+//ゲームのセーブとロードを行う
+
+#pragma once
 
 #include "..\\..\\..\\GameBase.h"
 #include "..\\..\\Engine\\FileCheck\\FileCheck.h"
