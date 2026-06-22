@@ -5,12 +5,12 @@
 
 bool GameSystem::GetBlackMode() const
 {
-	return m_bBlack_mode;
+	return m_is_black_mode;
 }
 
 bool GameSystem::GetBuildMode() const
 {
-	return m_bBuild_mode;
+	return m_is_build_mode;
 }
 
 bool GameSystem::GetGameClear() const
@@ -25,8 +25,8 @@ bool GameSystem::GetAllGameClear() const
 
 void GameSystem::SetGameMode(const bool bBlack_mode, const bool bBuild_mode)
 {
-	m_bBlack_mode = bBlack_mode;
-	m_bBuild_mode = bBuild_mode;
+	m_is_black_mode = bBlack_mode;
+	m_is_build_mode = bBuild_mode;
 }
 
 void GameSystem::SetGameClear(const bool is_game_clear)

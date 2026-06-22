@@ -1,10 +1,4 @@
-﻿//*****************************************************************************
-//
-// ゲームシーン
-//
-//*****************************************************************************
-
-#define _USING_V110_SDK71_ 1
+﻿#define _USING_V110_SDK71_ 1
 
 #include "SceneGame.h"
 
@@ -15,9 +9,8 @@ using namespace Common;
 
 //=============================================================================
 // コンストラクタ
-// 引　数：Engine* エンジンクラスのアドレス
 //=============================================================================
-SceneGame::SceneGame(Engine *pEngine)
+SceneGame::SceneGame(Engine* pEngine)
 	: Scene(pEngine)
 {
 
@@ -32,16 +25,20 @@ SceneGame::~SceneGame()
 }
 
 //=============================================================================
-// シーンの実行時に１度だけ呼び出される開始処理関数
+// 開始処理
 //=============================================================================
 void SceneGame::Start()
 {
-	m_setting.SceneResourceSetting(m_pEngine, SCENE_GAME, m_system.GetBlackMode(), m_system.GetBuildMode());
+	const bool bBlack_mode = m_system.GetBlackMode();
+	const bool bBuild_mode = m_system.GetBuildMode();
 
-	m_gameUI.Initialize(m_system.GetBlackMode(), m_system.GetBuildMode());
+	m_setting.SceneResourceSetting(m_pEngine, SCENE_GAME, bBlack_mode, bBuild_mode);
+
+	m_gameUI.Initialize(bBlack_mode, bBuild_mode);
+
 	m_back.Initialize();
-	m_stage.Initialize(m_system.GetBlackMode(), m_system.GetBuildMode(), m_gameData.map_no);
-	m_player.Initialize(m_system.GetBlackMode(), m_stage.GetBlockWidth(), m_stage.GetBlockHeight(), m_stage.GetStartPlayerPosition());
+	m_stage.Initialize(bBlack_mode, bBuild_mode, m_gameData.map_no);
+	m_player.Initialize(bBlack_mode, m_stage.GetBlockWidth(), m_stage.GetBlockHeight(), m_stage.GetStartPlayerPosition());
 
 	m_field = m_stage.GetMapArray();
 
@@ -51,7 +48,7 @@ void SceneGame::Start()
 }
 
 //=============================================================================
-// シーンの実行時に繰り返し呼び出される更新処理関数
+// 更新処理
 //=============================================================================
 void SceneGame::Update()
 {
@@ -59,65 +56,119 @@ void SceneGame::Update()
 
 	m_delta.DeltaTimeCount();
 
-	//ステージビルドモードはステージが変わるため更新が必要
-	if (m_system.GetBuildMode())
-	{
-		m_field = m_stage.GetMapArray();
-		m_stage.Update(m_pEngine);
-	}
+	UpdateBuildMode();
 
-	//プレイヤーがロード中に動けてしまう事象への対策用(m_is_ready)
-	if(m_is_ready) m_player.Update(m_pEngine, m_field, m_system.GetBlackMode(), m_delta.GetDeltaTime());
+	UpdatePlayer();
 
-	if (m_player.IsGoal())
-	{
-		m_nowSceneData.Set(SCENE_CLEAR);
-	}
-	if (m_player.IsGameover())
-	{
-		m_nowSceneData.Set(SCENE_GAMEOVER);
-	}
+	CheckSceneTransition();
 
-	if (m_system.GetBuildMode())
-	{
-		//ステージビルド説明表示非表示
-
-		if (m_pEngine->GetKeyStateSync(DIK_RETURN))
-		{
-			m_gameUI.SetDisplayBuildModeExplain(false);
-		}
-		if (m_pEngine->GetKeyStateSync(DIK_F2))
-		{
-			m_gameUI.SetDisplayBuildModeExplain(true);
-		}
-
-		if (m_pEngine->GetKeyStateSync(DIK_F1))
-		{
-			m_nowSceneData.Set(SCENE_TITLE);
-		}
-	}
+	ProcessBuildModeInput();
 
 	m_is_ready = true;
 }
 
 //=============================================================================
-// シーンの実行時に繰り返し呼び出される描画処理関数
+// ステージビルドモード更新
+//=============================================================================
+void SceneGame::UpdateBuildMode()
+{
+	if (!m_system.GetBuildMode())
+	{
+		return;
+	}
+
+	m_field = m_stage.GetMapArray();
+
+	m_stage.Update(m_pEngine);
+}
+
+//=============================================================================
+// プレイヤー更新
+//=============================================================================
+void SceneGame::UpdatePlayer()
+{
+	if (!m_is_ready)
+	{
+		return;
+	}
+
+	m_player.Update(m_pEngine, m_field, m_system.GetBlackMode(), m_delta.GetDeltaTime());
+}
+
+//=============================================================================
+// シーン遷移判定
+//=============================================================================
+void SceneGame::CheckSceneTransition()
+{
+	if (m_player.IsGoal())
+	{
+		m_nowSceneData.Set(SCENE_CLEAR);
+		return;
+	}
+
+	if (m_player.IsGameover())
+	{
+		m_nowSceneData.Set(SCENE_GAMEOVER);
+	}
+}
+
+//=============================================================================
+// ビルドモード入力処理
+//=============================================================================
+void SceneGame::ProcessBuildModeInput()
+{
+	if (!m_system.GetBuildMode())
+	{
+		return;
+	}
+
+	if (m_pEngine->GetKeyStateSync(DIK_RETURN))
+	{
+		m_gameUI.SetDisplayBuildModeExplain(false);
+	}
+
+	if (m_pEngine->GetKeyStateSync(DIK_F2))
+	{
+		m_gameUI.SetDisplayBuildModeExplain(true);
+	}
+
+	if (m_pEngine->GetKeyStateSync(DIK_F1))
+	{
+		m_nowSceneData.Set(SCENE_TITLE);
+	}
+}
+
+//=============================================================================
+// 背景描画
+//=============================================================================
+void SceneGame::DrawBackground()
+{
+	if (!m_system.GetBlackMode())
+	{
+		m_back.Draw(m_pEngine);
+	}
+}
+
+//=============================================================================
+// 描画処理
 //=============================================================================
 void SceneGame::Draw()
 {
 	m_pEngine->SpriteBegin();
 
-	if(!m_system.GetBlackMode()) m_back.Draw(m_pEngine);
+	DrawBackground();
 
 	m_stage.Draw(m_pEngine);
+
 	m_gameUI.Draw(m_pEngine, m_gameData.map_no, m_system.GetBlackMode(), m_system.GetBuildMode());
+
 	m_player.Draw(m_pEngine);
 
 	m_pEngine->SpriteEnd();
 }
 
 //=============================================================================
-// シーンの終了時に呼び出される終了処理関数
+// 終了処理
 //=============================================================================
 void SceneGame::Exit()
 {
@@ -125,7 +176,7 @@ void SceneGame::Exit()
 }
 
 //=============================================================================
-// シーンの実行時に繰り返し呼び出されるポストエフェクト（シェーダー）準備関数
+// ポストエフェクト準備
 //=============================================================================
 void SceneGame::PreparePostEffect()
 {
@@ -133,7 +184,7 @@ void SceneGame::PreparePostEffect()
 }
 
 //=============================================================================
-// シーンの実行時に繰り返し呼び出される初心者用ポストエフェクト関数
+// 初心者用ポストエフェクト
 //=============================================================================
 void SceneGame::PostEffectForBeginners()
 {

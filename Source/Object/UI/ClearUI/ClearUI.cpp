@@ -13,79 +13,65 @@ namespace
 
 ClearUI::ClearUI()
 {
+	// UI設定ファイル読込
+
 	json data = FileCheck::FileOpenCheck(FILE_CLEAR_UI);
 
-	//ステージクリア背景
 	BaseUI::InitializeImage(m_stage_clear_back, data, "StageClearBack");
-
-	//ステージクリアテロップ
 	BaseUI::InitializeImage(m_stage_clear_telop, data, "StageClearTelop");
-
-	//ネクストステージ画面
 	BaseUI::InitializeImage(m_next_stage, data, "NextStage");
-
-	//ゲームクリア背景
 	BaseUI::InitializeImage(m_game_clear_back, data, "GameClearBack");
-
-	//ゲームクリア
 	BaseUI::InitializeImage(m_game_clear, data, "GameClear");
-
-	//新モード説明画面
 	BaseUI::InitializeImage(m_new_mode, data, "NewMode");
 
+	m_state = State::StageClear;
+
 	m_is_drop_finish = false;
-	m_is_nextstage_display = false;
-	m_is_game_clear_display = false;
-	m_is_new_mode_display = false;
 	m_is_fade_in_finish = false;
 }
 
-void ClearUI::Update(Engine * pEngine)
+void ClearUI::Update()
 {
-	if (!m_is_nextstage_display) TelopDrop();
+	switch (m_state)
+	{
+	case State::StageClear:
+		TelopDrop();
+		break;
 
-	if (m_is_game_clear_display) FadeIn();
+	case State::GameClear:
+		FadeIn();
+		break;
+
+	default:
+		break;
+	}
 }
 
 void ClearUI::Draw(Engine* pEngine)
 {
-	if (m_is_game_clear_display)
+	switch (m_state)
 	{
-		if (m_is_new_mode_display)
-		{
-			BaseUI::Draw(pEngine, m_new_mode);
-		}
-		else
-		{
-			BaseUI::Draw(pEngine, m_game_clear_back);
-			BaseUI::Draw(pEngine, m_game_clear);
-		}
-	}
+	case State::StageClear:
+		DrawStageClear(pEngine);
+		break;
 
-	else if(!m_is_nextstage_display)
-	{
-		BaseUI::Draw(pEngine, m_stage_clear_back);
-		BaseUI::Draw(pEngine, m_stage_clear_telop);
-	}
-	else
-	{
-		BaseUI::Draw(pEngine, m_next_stage);
+	case State::NextStage:
+		DrawNextStage(pEngine);
+		break;
+
+	case State::GameClear:
+		DrawGameClear(pEngine);
+		break;
+
+	case State::NewMode:
+		DrawNewMode(pEngine);
+		break;
 	}
 }
 
-void ClearUI::SetNextStageDisplayTrue()
+void ClearUI::ChangeState(State state)
 {
-	m_is_nextstage_display = true;
-}
-
-void ClearUI::SetGameClearDisplayTrue()
-{
-	m_is_game_clear_display = true;
-}
-
-void ClearUI::SetNewModeDisplayTrue()
-{
-	m_is_new_mode_display = true;
+	m_state = state;
 }
 
 bool ClearUI::IsClearTelopDropFinish() const
@@ -93,24 +79,14 @@ bool ClearUI::IsClearTelopDropFinish() const
 	return m_is_drop_finish;
 }
 
-bool ClearUI::IsNextStageDisplay() const
-{
-	return m_is_nextstage_display;
-}
-
 bool ClearUI::IsGameClearFadeInFinish() const
 {
 	return m_is_fade_in_finish;
 }
 
-bool ClearUI::IsGameClearDisplay() const
+ClearUI::State ClearUI::GetState() const
 {
-	return m_is_game_clear_display;
-}
-
-bool ClearUI::IsNewModeDisplay() const
-{
-	return m_is_new_mode_display;
+	return m_state;
 }
 
 void ClearUI::TelopDrop()
@@ -140,5 +116,29 @@ void ClearUI::FadeIn()
 		m_is_fade_in_finish = true;
 	}
 }
+
+void ClearUI::DrawStageClear(Engine* pEngine)
+{
+	BaseUI::Draw(pEngine, m_stage_clear_back);
+	BaseUI::Draw(pEngine, m_stage_clear_telop);
+}
+
+void ClearUI::DrawNextStage(Engine* pEngine)
+{
+	BaseUI::Draw(pEngine, m_next_stage);
+}
+
+void ClearUI::DrawGameClear(Engine* pEngine)
+{
+	BaseUI::Draw(pEngine, m_game_clear_back);
+	BaseUI::Draw(pEngine, m_game_clear);
+}
+
+void ClearUI::DrawNewMode(Engine* pEngine)
+{
+	BaseUI::Draw(pEngine, m_new_mode);
+}
+
+
 
 

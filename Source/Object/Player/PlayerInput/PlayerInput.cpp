@@ -32,7 +32,7 @@ void PlayerInput::KeyInput(Engine* pEngine)
 	else								 m_key_flag &= ~JUMP_KEY;
 }
 
-unsigned int PlayerInput::GetKeyFlag()
+unsigned int PlayerInput::GetKeyFlag() const
 {
 	return m_key_flag;
 }

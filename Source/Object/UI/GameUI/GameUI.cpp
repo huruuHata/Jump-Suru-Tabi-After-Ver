@@ -5,20 +5,20 @@
 
 using namespace KeyString;
 
-void GameUI::Initialize(const bool bBlack_mode, const bool bBuild_mode)
+void GameUI::Initialize(const bool is_black_mode, const bool is_build_mode)
 {
+	// UI設定ファイル読込
+
 	json data = FileCheck::FileOpenCheck(FILE_GAME_UI);
 	json explain = data["Explain"];
 
-	if (bBuild_mode)
+	if (is_build_mode)
 	{
-		//ステージビルド説明
 		BaseUI::InitializeImage(m_build_explain, explain, "Build");
 		BaseUI::InitializeImage(m_build_key_explain, explain, "BuildKey");
 	}
-	else if(!bBlack_mode)
+	else if (!is_black_mode)
 	{
-		//ゲーム説明
 		BaseUI::InitializeImage(m_fall_explain, explain, "Fall");
 		BaseUI::InitializeImage(m_goal_explain, explain, "Goal");
 		BaseUI::InitializeImage(m_key_explain, explain, "Key");
@@ -27,47 +27,72 @@ void GameUI::Initialize(const bool bBlack_mode, const bool bBuild_mode)
 	}
 	else
 	{
-		BaseUI::InitializeImage(m_congratulations, explain, "Congratulations");
+		BaseUI::InitializeImage(m_congratulations, explain,"Congratulations");
 	}
 
-	m_bDisplay_build_mode = true;
+	m_is_build_explain_visible = true;
 }
 
-void GameUI::Draw(Engine * pEngine, const int map_no, const bool bBlack_mode, const bool bBuild_mode)
+void GameUI::Draw(Engine* pEngine, const int map_no, const bool is_black_mode, const bool is_build_mode)
 {
-	if (bBuild_mode)
+	if (is_build_mode)
 	{
-		BaseUI::Draw(pEngine, m_build_key_explain);
-		
-		if (m_bDisplay_build_mode)
-		{
-			BaseUI::Draw(pEngine, m_build_explain);
-		}
+		DrawBuildMode(pEngine);
+		return;
 	}
-	else if (!bBlack_mode)
+
+	if (!is_black_mode)
 	{
-		if (map_no == FIRST_STAGE)
-		{
-			BaseUI::Draw(pEngine, m_fall_explain);
-			BaseUI::Draw(pEngine, m_goal_explain);
-			BaseUI::Draw(pEngine, m_key_explain);
-			BaseUI::Draw(pEngine, m_jump_explain);
-		}
-		if (map_no == HIT_STAGE)
-		{
-			BaseUI::Draw(pEngine, m_hit_explain);
-		}
+		DrawNormalMode(pEngine, map_no);
+		return;
 	}
-	else
+
+	DrawBlackMode(pEngine, map_no);
+}
+
+void GameUI::DrawBuildMode(Engine* pEngine)
+{
+	BaseUI::Draw(pEngine, m_build_key_explain);
+
+	if (m_is_build_explain_visible)
 	{
-		if (map_no == LAST_STAGE)
-		{
-			BaseUI::Draw(pEngine, m_congratulations);
-		}
+		BaseUI::Draw(pEngine, m_build_explain);
+	}
+}
+
+void GameUI::DrawNormalMode(Engine* pEngine, const int map_no)
+{
+	switch (map_no)
+	{
+	case FIRST_STAGE:
+
+		BaseUI::Draw(pEngine, m_fall_explain);
+		BaseUI::Draw(pEngine, m_goal_explain);
+		BaseUI::Draw(pEngine, m_key_explain);
+		BaseUI::Draw(pEngine, m_jump_explain);
+
+		break;
+
+	case HIT_STAGE:
+
+		BaseUI::Draw(pEngine, m_hit_explain);
+
+		break;
+
+	default:
+		break;
+	}
+}
+
+void GameUI::DrawBlackMode(Engine* pEngine, const int map_no)
+{
+	if (map_no == LAST_STAGE)
+	{
+		BaseUI::Draw(pEngine, m_congratulations);
 	}
 }
 
 void GameUI::SetDisplayBuildModeExplain(const bool bDisplay)
 {
-	m_bDisplay_build_mode = bDisplay;
+	m_is_build_explain_visible = bDisplay;
 }

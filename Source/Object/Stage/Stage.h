@@ -12,15 +12,15 @@ class Stage : public BaseObject
 {
 public:
 
-	void Initialize(const bool bBlack_mode, const bool bBuild_mode, const int map_no);
+	void Initialize(const bool is_black_mode, const bool is_Build_mode, const int map_no);
 	void Update(Engine* pEngine);
 	void Draw(Engine* pEngine);
 
-	Vector2Int GetStartPlayerPosition();
+	Vector2Int GetStartPlayerPosition() const;
 	Field GetMapArray();
 	
-	int GetBlockWidth();
-	int GetBlockHeight();
+	int GetBlockWidth() const;
+	int GetBlockHeight() const;
 
 	static int ToMapX(int pixel_x, int block_width);
 	static int ToMapY(int pixel_y, int block_height);
@@ -37,7 +37,7 @@ public:
 
 private:
 
-	void FileSetting(json& data, const bool bBlack_mode, const bool bBuild_mode, const int map_no);
+	void FileSetting(json& data, const bool is_black_mode, const bool is_build_mode, const int map_no);
 	void StageBuild(Engine* pEngine);
 
 	int m_block_row;
@@ -48,6 +48,9 @@ private:
 
 	Vector2Int m_start_pos;
 
-	int m_map_array[12][12];
+	static constexpr int MAP_ROW = 12;
+	static constexpr int MAP_COL = 12;
+
+	int m_map_array[MAP_ROW][MAP_COL];
 };
 

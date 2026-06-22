@@ -10,23 +10,21 @@ namespace
 	constexpr int FADE_IN_ALPHA_PLUS = 5;
 };
 
-
 GameoverUI::GameoverUI()
 {
+	// UI設定ファイル読込
+
 	json data = FileCheck::FileOpenCheck(FILE_GAMEOVER_UI);
 
-	//ゲームオーバー背景
 	BaseUI::InitializeImage(m_gameover_back, data, "GameoverBack");
-
-	//ゲームオーバー
 	BaseUI::InitializeImage(m_gameover, data, "Gameover");
 
 	m_is_fade_in_finish = false;
 }
 
-void GameoverUI::Update(Engine * pEngine)
+void GameoverUI::Update()
 {
-	if (!m_is_fade_in_finish) FadeIn();
+	FadeIn();
 }
 
 void GameoverUI::Draw(Engine * pEngine)
@@ -42,6 +40,8 @@ bool GameoverUI::IsFadeInFinish() const
 
 void GameoverUI::FadeIn()
 {
+	if (m_is_fade_in_finish) return;
+
 	if (m_gameover.alpha < OPACITY)
 	{
 		m_gameover.alpha += FADE_IN_ALPHA_PLUS;

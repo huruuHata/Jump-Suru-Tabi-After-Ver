@@ -17,15 +17,15 @@ public:
 	Player();
 
 	void Initialize(const bool bBlack_mode, const int block_width, const int block_height, const Vector2Int start_pos);
-	void Update(Engine* pEngine, const Field& field, const bool bBlack_mode, const float delta_time);
+	void Update(Engine* pEngine, const Field& field, const bool is_black_mode, const float delta_time);
 
 	bool IsGoal() const;
 	bool IsGameover() const;
 
 private:
 
-	void Move(Engine* pEngine, const Field& field, float delta_time);
-	void JumpAndPhysics(Engine* pEngine, const Field& field, const bool bBlack_mode, float delta_time);
+	void Move(const Field& field, float delta_time);
+	void JumpAndPhysics(Engine* pEngine, const Field& field, const bool is_black_mode, float delta_time);
 
 	std::string m_white_texture;
 	std::string m_black_texture;

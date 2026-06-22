@@ -39,12 +39,12 @@ void Player::Initialize(const bool bBlack_mode, const int block_width, const int
 	m_movement.Initialize(m_block_width, m_block_height);
 }
 
-void Player::Update(Engine * pEngine, const Field& field, const bool bBlack_mode, const float delta_time)
+void Player::Update(Engine * pEngine, const Field& field, const bool is_black_mode, const float delta_time)
 {
 	m_input.Update(pEngine);
 
-	Move(pEngine, field, delta_time);
-	JumpAndPhysics(pEngine, field, bBlack_mode, delta_time);
+	Move(field, delta_time);
+	JumpAndPhysics(pEngine, field, is_black_mode, delta_time);
 }
 
 bool Player::IsGoal() const
@@ -57,21 +57,21 @@ bool Player::IsGameover() const
 	return m_movement.IsGameover() || m_jump_physics.IsGameover();
 }
 
-void Player::Move(Engine * pEngine, const Field& field, float delta_time)
+void Player::Move(const Field& field, float delta_time)
 {
-	auto moves = m_movement.Update(field, m_draw, m_move_speed, m_input.GetKeyFlag(), delta_time);
+	auto move_result = m_movement.Update(field, m_draw, m_move_speed, m_input.GetKeyFlag(), delta_time);
 
 	//向く方向を変える
-	m_draw.texture_num = moves.look_dir;
+	m_draw.texture_num = move_result.look_dir;
 
-	m_draw.position.x += (int)((moves.move_x * m_move_speed) * delta_time);
+	m_draw.position.x += (int)((move_result.move_x * m_move_speed) * delta_time);
 }
 
-void Player::JumpAndPhysics(Engine * pEngine, const Field& field, const bool bBlack_mode, float delta_time)
+void Player::JumpAndPhysics(Engine * pEngine, const Field& field, const bool is_black_mode, float delta_time)
 {
-	if ((m_input.GetKeyFlag() & PlayerInput::JUMP_KEY))
+	if (m_input.GetKeyFlag() & PlayerInput::JUMP_KEY)
 	{
-		m_jump_physics.JumpCheck(pEngine, m_draw, bBlack_mode);
+		m_jump_physics.JumpCheck(pEngine, m_draw, is_black_mode);
 	}
 
 	m_jump_physics.Update(field, m_draw, delta_time);

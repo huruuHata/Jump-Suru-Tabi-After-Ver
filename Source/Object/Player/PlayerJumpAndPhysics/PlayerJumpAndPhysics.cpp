@@ -27,10 +27,8 @@ void PlayerJumpAndPhysics::Initialize(const json& data, const int block_width, c
 	m_bGoal = false;
 }
 
-PlayerJumpAndPhysics::Output PlayerJumpAndPhysics::Update(const Field& field, BaseObject::DrawSet& draw, const float delta_time)
+void PlayerJumpAndPhysics::Update(const Field& field, BaseObject::DrawSet& draw, const float delta_time)
 {
-	Output out{};
-
 	if (m_bGrounded) GroundProcess(field, draw);
 
 	if (!m_bJumping)
@@ -41,8 +39,6 @@ PlayerJumpAndPhysics::Output PlayerJumpAndPhysics::Update(const Field& field, Ba
 	{
 		Jumping(field, draw, delta_time);
 	}
-
-	return out;
 }
 
 bool PlayerJumpAndPhysics::IsGrounded() const
@@ -60,7 +56,7 @@ bool PlayerJumpAndPhysics::IsGameover() const
 	return m_bGameover;
 }
  
-void PlayerJumpAndPhysics::JumpCheck(Engine* pEngine, BaseObject::DrawSet& draw, const bool bBlack_mode)
+void PlayerJumpAndPhysics::JumpCheck(Engine* pEngine, BaseObject::DrawSet& draw, const bool is_black_mode)
 {
 	if (!m_bJumping && m_bGrounded)
 	{
@@ -70,7 +66,7 @@ void PlayerJumpAndPhysics::JumpCheck(Engine* pEngine, BaseObject::DrawSet& draw,
 
 		pEngine->PlaySE(SE_JUMP);
 
-		m_jump_power += bBlack_mode ? m_jump_power_black : m_jump_power_white;
+		m_jump_power += is_black_mode ? m_jump_power_black : m_jump_power_white;
 	}
 }
 
@@ -90,7 +86,7 @@ void PlayerJumpAndPhysics::Jumping(const Field& field, BaseObject::DrawSet& draw
 
 void PlayerJumpAndPhysics::GroundProcess(const Field& field, BaseObject::DrawSet& draw)
 {
-	int ground_y;
+	int ground_y = 0;
 
 	//着地
 	if (CheckGround(field, ground_y, draw))

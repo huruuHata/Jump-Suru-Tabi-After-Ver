@@ -25,7 +25,7 @@ PlayerMovement::Output PlayerMovement::Update(const Field& field, BaseObject::Dr
 	if (key_flag & PlayerInput::UP_KEY)    m_look_dir = UP;
 	if (key_flag & PlayerInput::DOWN_KEY)  m_look_dir = DOWN;
 
-	if (key_flag & PlayerInput::LEFT_KEY) out.move_x -= 1;
+	if (key_flag & PlayerInput::LEFT_KEY)  out.move_x -= 1;
 	if (key_flag & PlayerInput::RIGHT_KEY) out.move_x += 1;
 
 	if (out.move_x < 0)

@@ -16,7 +16,7 @@ void SaveGame::SaveFile(const SaveData& data)
 
 	if (file.is_open()) 
 	{
-		file << save.dump(4); //４を入れるとファイルの中身が見やすくなるため
+		file << save.dump(4);  //インデント幅４で整形出力
 	}
 }
 

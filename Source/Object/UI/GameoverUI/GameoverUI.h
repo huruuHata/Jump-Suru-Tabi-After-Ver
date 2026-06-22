@@ -1,4 +1,8 @@
 ﻿
+//ゲームオーバー画面のUIの初期化、更新、描画
+//UIのフェードインを行う
+
+
 #pragma once
 
 #include "..\\..\\Base\\BaseUI\\BaseUI.h"
@@ -9,7 +13,7 @@ public:
 
 	GameoverUI();
 
-	void Update(Engine* pEngine);
+	void Update();
 	void Draw(Engine* pEngine);
 
 	bool IsFadeInFinish() const;

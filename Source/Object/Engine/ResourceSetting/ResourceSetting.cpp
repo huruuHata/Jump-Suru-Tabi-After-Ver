@@ -9,7 +9,6 @@ using namespace Common;
 void ResourceSetting::SceneResourceSetting(Engine* pEngine, const int scene_num, const bool bBlack_mode, const bool bBuild_mode)
 {
 	m_textures.clear();
-	m_font.clear();
 	m_ses.clear();
 	m_bgm.clear();
 
@@ -118,9 +117,9 @@ void ResourceSetting::TitleSetting()
 	};
 }
 
-void ResourceSetting::GameSetting(const bool bBlack_mode, const bool bBuild_mode)
+void ResourceSetting::GameSetting(const bool is_black_mode, const bool is_build_mode)
 {
-	if (bBlack_mode)
+	if (is_black_mode)
 	{
 		m_textures =
 		{
@@ -131,7 +130,7 @@ void ResourceSetting::GameSetting(const bool bBlack_mode, const bool bBuild_mode
 	}
 	else
 	{
-		if (bBuild_mode)
+		if (is_build_mode)
 		{
 			m_textures =
 			{
@@ -158,7 +157,7 @@ void ResourceSetting::GameSetting(const bool bBlack_mode, const bool bBuild_mode
 		}
 	}
 
-	m_bgm = bBlack_mode ? BGM_BLACK : BGM_WHITE;
+	m_bgm = is_black_mode ? BGM_BLACK : BGM_WHITE;
 
 	m_ses =
 	{

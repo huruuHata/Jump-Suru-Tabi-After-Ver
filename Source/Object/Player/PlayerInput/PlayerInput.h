@@ -13,7 +13,7 @@ public:
 
 	void Update(Engine* pEngine);
 
-	unsigned int GetKeyFlag();
+	unsigned int GetKeyFlag() const;
 
 	enum
 	{

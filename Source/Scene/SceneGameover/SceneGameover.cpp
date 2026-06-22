@@ -46,7 +46,7 @@ void SceneGameover::Start()
 //=============================================================================
 void SceneGameover::Update()
 {
-	m_gameoverUI.Update(m_pEngine);
+	m_gameoverUI.Update();
 
 	if (m_gameoverUI.IsFadeInFinish() && m_pEngine->GetKeyStateSync(DIK_RETURN))
 	{

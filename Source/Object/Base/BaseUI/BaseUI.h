@@ -1,4 +1,6 @@
 ﻿
+//UIの基底クラス UIの描画と初期化用の関数を保有する
+
 #pragma once
 
 #include "..\\..\\..\\GameBase.h"
@@ -25,7 +27,7 @@ protected:
 	void Draw(Engine* pEngine, const UIData& ui);
 
 	//UIData, json, キー
-	void InitializeImage(UIData& ui_data, json& data, const std::string key);
+	void InitializeImage(UIData& ui_data, json& data, const std::string& key);
 
 private:
 

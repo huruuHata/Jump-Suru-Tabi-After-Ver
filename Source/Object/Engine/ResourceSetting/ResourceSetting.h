@@ -18,7 +18,7 @@ public:
 	ResourceSetting(const ResourceSetting&) = delete;
 	ResourceSetting& operator=(const ResourceSetting&) = delete;
 
-	void SceneResourceSetting(Engine* pEngine, const int scene_num, const bool bBlack_mode = false, const bool bBuild_mode = false);
+	void SceneResourceSetting(Engine* pEngine, const int scene_num, const bool is_black_mode = false, const bool is_build_mode = false);
 	void SceneResourceRelease(Engine* pEngine);
 
 private:
@@ -42,7 +42,6 @@ private:
 	std::vector<std::string> m_textures;
 	std::vector<std::string> m_ses;
 
-	std::string m_font;
 	std::string m_bgm;
 
 	ResourceSetting() {}

@@ -60,8 +60,6 @@ public:
 	//=============================================================================
 	void PostEffectForBeginners();
 
-	void ClearDataSave();
-
 #ifndef IMGUI_DISABLE
 	//=============================================================================
 	// 日本語入力用
@@ -70,6 +68,14 @@ public:
 #endif
 
 private:
+
+	void ProcessEnterKey();
+	bool IsFinalStageClear() const;
+	void ProcessNextStage();
+	void ProcessGameClear();
+	void ProcessWhiteModeClear();
+	void ProcessBlackModeClear();
+	void ClearDataSave();
 
 	ClearUI m_clearUI;
 

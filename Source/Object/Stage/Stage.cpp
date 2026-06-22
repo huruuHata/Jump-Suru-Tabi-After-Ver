@@ -7,7 +7,7 @@ using namespace std;
 using namespace KeyString;
 using namespace InputKey;
 
-void Stage::Initialize(const bool bBlack_mode, const bool bBuild_mode, const int map_no)
+void Stage::Initialize(const bool is_black_mode, const bool is_build_mode, const int map_no)
 {
 	json data = FileCheck::FileOpenCheck(FILE_STAGE);
 
@@ -15,14 +15,14 @@ void Stage::Initialize(const bool bBlack_mode, const bool bBuild_mode, const int
 	m_block_col = data["Block"]["Col"];
 	m_map_chip_col = data["Block"]["ChipCol"];
 
-	FileSetting(data, bBlack_mode, bBuild_mode, map_no);
+	FileSetting(data, is_black_mode, is_build_mode, map_no);
 
 	m_draw.image_width = data["Image"]["Width"];
 	m_draw.image_height = data["Image"]["Height"];
 	m_draw.draw_width = data["Draw"]["Width"];
 	m_draw.draw_height = data["Draw"]["Height"];
 	
-    m_draw.filename = bBlack_mode ? data["Texture"]["Black"]:
+    m_draw.filename = is_black_mode ? data["Texture"]["Black"]:
 								    data["Texture"]["White"];
 
 	m_draw.position = Vector2Int(0, 0);
@@ -51,7 +51,7 @@ void Stage::Draw(Engine* pEngine)
 }
 
 //マップデータからプレイヤーの初期位置を取得
-Vector2Int Stage::GetStartPlayerPosition()
+Vector2Int Stage::GetStartPlayerPosition() const
 {
 	return m_start_pos;
 }
@@ -71,12 +71,12 @@ Field Stage::GetMapArray()
 	return field;
 }
 
-int Stage::GetBlockWidth()
+int Stage::GetBlockWidth() const
 {
 	return m_draw.draw_width;
 }
 
-int Stage::GetBlockHeight()
+int Stage::GetBlockHeight() const
 {
 	return m_draw.draw_height;
 }
@@ -91,14 +91,14 @@ int Stage::ToMapY(int pixel_y, int block_height)
 	return pixel_y / block_height;
 }
 
-void Stage::FileSetting(json& data, const bool bBlack_mode, const bool bBuild_mode, const int map_no)
+void Stage::FileSetting(json& data, const bool is_black_mode, const bool is_build_mode, const int map_no)
 {
 	string filename;
 	fstream ifs_map;
 
-	if (!bBuild_mode)
+	if (!is_build_mode)
 	{
-		if (!bBlack_mode)
+		if (!is_black_mode)
 		{
 			//表面マップ
 			filename = data["WhiteStage"][map_no ];
@@ -160,6 +160,16 @@ void Stage::StageBuild(Engine* pEngine)
 
 		int mx = point.x / m_draw.draw_width;
 		int my = point.y / m_draw.draw_height;
+
+		if (mx < 0 || mx >= m_block_col)
+		{
+			return;
+		}
+
+		if (my < 0 || my >= m_block_row)
+		{
+			return;
+		}
 
 		if (m_map_array[my][mx] != m_build_block_num)
 		{

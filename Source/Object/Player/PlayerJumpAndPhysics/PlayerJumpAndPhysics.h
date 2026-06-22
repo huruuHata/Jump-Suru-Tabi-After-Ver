@@ -15,22 +15,15 @@ public:
 
 	PlayerJumpAndPhysics();
 
-	struct Output
-	{
-		int new_y;
-		int power_y;
-		bool bGrounded;
-	};
-
 	void Initialize(const json& data, const int block_width, const int block_height);
 
-	Output Update(const Field& field, BaseObject::DrawSet& draw, const float delta_time);
+	void Update(const Field& field, BaseObject::DrawSet& draw, const float delta_time);
 
 	bool IsGrounded() const;
 	bool IsGoal() const;
 	bool IsGameover() const;
 
-	void JumpCheck(Engine* pEngine, BaseObject::DrawSet& draw, const bool bBlack_mode);
+	void JumpCheck(Engine* pEngine, BaseObject::DrawSet& draw, const bool is_black_mode);
 
 private:
 

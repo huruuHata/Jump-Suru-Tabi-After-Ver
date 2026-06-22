@@ -72,17 +72,23 @@ public:
 
 private:
 
-	Player m_player;
-	Stage m_stage;
+	void UpdateBuildMode();
+	void UpdatePlayer();
+	void CheckSceneTransition();
+	void ProcessBuildModeInput();
+
+	void DrawBackground();
+
+	ResourceSetting& m_setting = ResourceSetting::getInstance();
+	GameSystem& m_system = GameSystem::getInstance();
+	DeltaTime& m_delta = DeltaTime::getInstance();
+
 	Back m_back;
+	Stage m_stage;
+	Player m_player;
+	GameUI m_gameUI;
 
 	Field m_field;
 
-	GameUI m_gameUI;
-
-	ResourceSetting& m_setting = ResourceSetting::getInstance();
-	DeltaTime& m_delta = DeltaTime::getInstance();
-	GameSystem& m_system = GameSystem::getInstance();
-	
 	bool m_is_ready;
 };

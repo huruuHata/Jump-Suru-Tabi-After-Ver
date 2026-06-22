@@ -46,79 +46,11 @@ void SceneClear::Start()
 //=============================================================================
 void SceneClear::Update()
 {
-	m_clearUI.Update(m_pEngine);
+	m_clearUI.Update();
 
 	if (m_pEngine->GetKeyStateSync(DIK_RETURN))
 	{
-		if (!m_system.GetBlackMode())
-		{
-			//STAGECLEAR画面→GAMECLEAR画面→NEWMODE説明画面(しろステージクリア)
-
-			if (m_gameData.map_no >= m_gameData.map_max)
-			{
-				if (!m_clearUI.IsGameClearDisplay())
-				{
-					m_clearUI.SetGameClearDisplayTrue();
-					m_pEngine->PlaySE(SE_GAMECLEAR);
-				}
-				else if (m_clearUI.IsGameClearFadeInFinish() && m_clearUI.IsNewModeDisplay())
-				{
-					m_nowSceneData.Set(SCENE_TITLE);
-				}
-				else
-				{
-					m_system.SetGameClear(true);
-					m_clearUI.SetNewModeDisplayTrue();
-
-					ClearDataSave();
-				}
-			}
-		}
-		else
-		{
-			//STAGECLEAR画面→GAMECLEAR画面(くろステージクリア)
-
-			if (m_gameData.map_no >= m_gameData.map_max)
-			{
-				if (!m_clearUI.IsGameClearDisplay())
-				{
-					m_clearUI.SetGameClearDisplayTrue();
-					m_system.SetAllGameClear(true);
-					m_pEngine->PlaySE(SE_GAMECLEAR);
-
-					ClearDataSave();
-				}
-
-				else if (m_clearUI.IsGameClearFadeInFinish())
-				{
-					m_nowSceneData.Set(SCENE_TITLE);
-				}
-			}
-		}
-
-		//STAGECLEAR画面→NEXTSTAGE画面
-
-		//NEXTSTAGE画面であれば次のステージ
-		if (m_clearUI.IsNextStageDisplay() && m_gameData.map_no < m_gameData.map_max)
-		{
-			m_gameData.map_no++;
-
-			m_nowSceneData.Set(SCENE_GAME);
-		}
-		//CLEAR画面のテロップが落ち切ったか
-		else if (m_clearUI.IsClearTelopDropFinish())
-		{
-			//ステージビルドモードならNEXTSTAGE画面に行かずそのままゲームに戻す
-			if (m_system.GetBuildMode())
-			{
-				m_nowSceneData.Set(SCENE_GAME);
-			}
-			//NEXTSTAGE画面を表示させる
-			else
-			{
-				m_clearUI.SetNextStageDisplayTrue();
-			}
-		}
+		ProcessEnterKey();
 	}
 }
 
@@ -158,6 +90,143 @@ void SceneClear::PostEffectForBeginners()
 
 }
 
+//=============================================================================
+// Enterキー入力後の処理
+//=============================================================================
+void SceneClear::ProcessEnterKey()
+{
+	if (IsFinalStageClear())
+	{
+		ProcessGameClear();
+	}
+	else
+	{
+		ProcessNextStage();
+	}
+}
+
+//=============================================================================
+// 最終ステージクリア判定
+//=============================================================================
+bool SceneClear::IsFinalStageClear() const
+{
+	return m_gameData.map_no >= m_gameData.map_max;
+}
+
+//=============================================================================
+// 次のステージの画面遷移
+//=============================================================================
+void SceneClear::ProcessNextStage()
+{
+	if (!m_clearUI.IsClearTelopDropFinish())
+	{
+		return;
+	}
+
+	if (m_system.GetBuildMode())
+	{
+		m_nowSceneData.Set(SCENE_GAME);
+		return;
+	}
+
+	if (m_clearUI.GetState() == ClearUI::State::StageClear)
+	{
+		m_clearUI.ChangeState(ClearUI::State::NextStage);
+		return;
+	}
+
+	if (m_clearUI.GetState() == ClearUI::State::NextStage)
+	{
+		m_gameData.map_no++;
+		m_nowSceneData.Set(SCENE_GAME);
+	}
+}
+
+//=============================================================================
+// ゲームクリア画面の遷移
+//=============================================================================
+void SceneClear::ProcessGameClear()
+{
+	if (m_system.GetBlackMode())
+	{
+		ProcessBlackModeClear();
+	}
+	else
+	{
+		ProcessWhiteModeClear();
+	}
+}
+
+//=============================================================================
+// 白モードの画面遷移
+//=============================================================================
+void SceneClear::ProcessWhiteModeClear()
+{
+	switch (m_clearUI.GetState())
+	{
+	case ClearUI::State::StageClear:
+
+		m_clearUI.ChangeState(ClearUI::State::GameClear);
+		m_pEngine->PlaySE(SE_GAMECLEAR);
+
+		break;
+
+	case ClearUI::State::GameClear:
+
+		if (!m_clearUI.IsGameClearFadeInFinish())
+		{
+			return;
+		}
+
+		m_system.SetGameClear(true);
+
+		ClearDataSave();
+
+		m_clearUI.ChangeState(ClearUI::State::NewMode);
+
+		break;
+
+	case ClearUI::State::NewMode:
+
+		m_nowSceneData.Set(SCENE_TITLE);
+
+		break;
+	}
+}
+
+//=============================================================================
+// 黒モードの画面遷移
+//=============================================================================
+void SceneClear::ProcessBlackModeClear()
+{
+	switch (m_clearUI.GetState())
+	{
+	case ClearUI::State::StageClear:
+
+		m_system.SetAllGameClear(true);
+
+		ClearDataSave();
+
+		m_clearUI.ChangeState(ClearUI::State::GameClear);
+
+		m_pEngine->PlaySE(SE_GAMECLEAR);
+
+		break;
+
+	case ClearUI::State::GameClear:
+
+		if (m_clearUI.IsGameClearFadeInFinish())
+		{
+			m_nowSceneData.Set(SCENE_TITLE);
+		}
+
+		break;
+	}
+}
+
+//=============================================================================
+// データセーブ
+//=============================================================================
 void SceneClear::ClearDataSave()
 {
 	SaveGame::SaveData data;

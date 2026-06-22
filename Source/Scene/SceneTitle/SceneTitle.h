@@ -69,6 +69,11 @@ public:
 
 private:
 
+	void LoadSaveData();
+
+	void ProcessInput();
+	void CheckSceneTransition();
+
 	void Decide(const bool bBlackMode, const bool bBuildMode);
 
 	TitleUI m_titleUI;

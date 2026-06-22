@@ -26,13 +26,13 @@ public:
 
 private:
 
-	bool m_bBlack_mode;
-	bool m_bBuild_mode;
+	bool m_is_black_mode;
+	bool m_is_build_mode;
 	
 	bool m_is_gameclear;
 	bool m_is_all_gameclear;
 
-	GameSystem() { m_bBlack_mode = false; m_bBuild_mode = false; m_is_gameclear = false; m_is_all_gameclear = false; }
+	GameSystem() { m_is_black_mode = false; m_is_build_mode = false; m_is_gameclear = false; m_is_all_gameclear = false; }
 
 	~GameSystem() = default;
 };

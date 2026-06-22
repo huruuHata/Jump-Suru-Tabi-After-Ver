@@ -6,7 +6,7 @@
 using namespace WindowSetting;
 using namespace KeyString;
 
-void BaseUI::InitializeImage(UIData& ui_data, json& data, const std::string key)
+void BaseUI::InitializeImage(UIData& ui_data, json& data, const std::string& key)
 {
 	ui_data.filename = data[key]["Filename"];
 	ui_data.image_width = data[key]["Image"]["Width"];

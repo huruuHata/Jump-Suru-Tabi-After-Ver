@@ -1,10 +1,4 @@
-﻿//*****************************************************************************
-//
-// タイトルシーン
-//
-//*****************************************************************************
-
-#define _USING_V110_SDK71_ 1
+﻿#define _USING_V110_SDK71_ 1
 
 #include "SceneTitle.h"
 
@@ -15,9 +9,8 @@ using namespace Common;
 
 //=============================================================================
 // コンストラクタ
-// 引　数：Engine* エンジンクラスのアドレス
 //=============================================================================
-SceneTitle::SceneTitle(Engine *pEngine)
+SceneTitle::SceneTitle(Engine* pEngine)
 	: Scene(pEngine)
 {
 
@@ -32,7 +25,7 @@ SceneTitle::~SceneTitle()
 }
 
 //=============================================================================
-// シーンの実行時に１度だけ呼び出される開始処理関数
+// 開始処理
 //=============================================================================
 void SceneTitle::Start()
 {
@@ -40,10 +33,7 @@ void SceneTitle::Start()
 
 	m_pEngine->PlayBGM();
 
-	SaveGame::SaveData data = m_save.LoadFile();
-
-	m_system.SetGameClear(data.is_game_clear);
-	m_system.SetAllGameClear(data.is_all_game_clear);
+	LoadSaveData();
 
 	m_gameData.map_no = 0;
 
@@ -51,28 +41,67 @@ void SceneTitle::Start()
 }
 
 //=============================================================================
-// シーンの実行時に繰り返し呼び出される更新処理関数
+// セーブデータ読込
+//=============================================================================
+void SceneTitle::LoadSaveData()
+{
+	const SaveGame::SaveData data = m_save.LoadFile();
+
+	m_system.SetGameClear(data.is_game_clear);
+
+	m_system.SetAllGameClear(data.is_all_game_clear);
+}
+
+//=============================================================================
+// 更新処理
 //=============================================================================
 void SceneTitle::Update()
 {
-	m_titleUI.Update(m_pEngine);
+	m_titleUI.Update();
 
-	//通常モード
+	ProcessInput();
 
-	if (!bDecide)
+	CheckSceneTransition();
+}
+
+//=============================================================================
+// 入力処理
+//=============================================================================
+void SceneTitle::ProcessInput()
+{
+	if (bDecide)
 	{
-		if (m_pEngine->GetKeyStateSync(DIK_RETURN)) Decide(false, false);
-
-		else if (m_system.GetGameClear())
-		{
-			//ブラックモード
-			if (m_pEngine->GetKeyStateSync(DIK_K)) Decide(true, false);
-
-			//ステージビルドモード
-			else if (m_pEngine->GetKeyStateSync(DIK_S)) Decide(false, true);
-		}
+		return;
 	}
 
+	if (m_pEngine->GetKeyStateSync(DIK_RETURN))
+	{
+		Decide(false, false);
+		return;
+	}
+
+	if (!m_system.GetGameClear())
+	{
+		return;
+	}
+
+	if (m_pEngine->GetKeyStateSync(DIK_K))
+	{
+		Decide(true, false);
+		return;
+	}
+
+	if (m_pEngine->GetKeyStateSync(DIK_S))
+	{
+		Decide(false, true);
+	}
+}
+
+//=============================================================================
+// シーン遷移判定
+//=============================================================================
+void SceneTitle::CheckSceneTransition()
+{
 	if (m_timer_start_wait.GetTiming())
 	{
 		m_nowSceneData.Set(SCENE_GAME);
@@ -80,7 +109,7 @@ void SceneTitle::Update()
 }
 
 //=============================================================================
-// シーンの実行時に繰り返し呼び出される描画処理関数
+// 描画処理
 //=============================================================================
 void SceneTitle::Draw()
 {
@@ -92,7 +121,7 @@ void SceneTitle::Draw()
 }
 
 //=============================================================================
-// シーンの終了時に呼び出される終了処理関数
+// 終了処理
 //=============================================================================
 void SceneTitle::Exit()
 {
@@ -100,7 +129,7 @@ void SceneTitle::Exit()
 }
 
 //=============================================================================
-// シーンの実行時に繰り返し呼び出されるポストエフェクト（シェーダー）準備関数
+// ポストエフェクト準備
 //=============================================================================
 void SceneTitle::PreparePostEffect()
 {
@@ -108,17 +137,22 @@ void SceneTitle::PreparePostEffect()
 }
 
 //=============================================================================
-// シーンの実行時に繰り返し呼び出される初心者用ポストエフェクト関数
+// 初心者用ポストエフェクト
 //=============================================================================
 void SceneTitle::PostEffectForBeginners()
 {
 
 }
 
+//=============================================================================
+// プレイモードの決定
+//=============================================================================
 void SceneTitle::Decide(const bool bBlackMode, const bool bBuildMode)
 {
 	m_system.SetGameMode(bBlackMode, bBuildMode);
+
 	m_pEngine->PlaySE(SE_DECIDE);
+
 	m_timer_start_wait.SetInterval(350);
 
 	bDecide = true;
