@@ -52,9 +52,14 @@ struct Field
 //-----------------------------------------------------------------------------
 namespace KeyString
 {
+
 	//****************
 	// ファイル
 	//****************
+
+	//セーブデータ
+
+	constexpr char* FILE_SAVE = "Resource\\Data\\Json\\\\SaveData.json";
 
 	//オブジェクト
 

@@ -67,8 +67,10 @@ void SceneClear::Update()
 				}
 				else
 				{
-					m_system.SetGameClearTrue();
+					m_system.SetGameClear(true);
 					m_clearUI.SetNewModeDisplayTrue();
+
+					ClearDataSave();
 				}
 			}
 		}
@@ -76,15 +78,21 @@ void SceneClear::Update()
 		{
 			//STAGECLEAR画面→GAMECLEAR画面(くろステージクリア)
 
-			if (!m_clearUI.IsGameClearDisplay())
+			if (m_gameData.map_no >= m_gameData.map_max)
 			{
-				m_clearUI.SetGameClearDisplayTrue();
-				m_system.SetAllGameClearTrue();
-				m_pEngine->PlaySE(SE_GAMECLEAR);
-			}
-			else if(m_clearUI.IsGameClearFadeInFinish())
-			{
-				m_nowSceneData.Set(SCENE_TITLE);
+				if (!m_clearUI.IsGameClearDisplay())
+				{
+					m_clearUI.SetGameClearDisplayTrue();
+					m_system.SetAllGameClear(true);
+					m_pEngine->PlaySE(SE_GAMECLEAR);
+
+					ClearDataSave();
+				}
+
+				else if (m_clearUI.IsGameClearFadeInFinish())
+				{
+					m_nowSceneData.Set(SCENE_TITLE);
+				}
 			}
 		}
 
@@ -148,6 +156,16 @@ void SceneClear::PreparePostEffect()
 void SceneClear::PostEffectForBeginners()
 {
 
+}
+
+void SceneClear::ClearDataSave()
+{
+	SaveGame::SaveData data;
+
+	data.is_game_clear = m_system.GetGameClear();
+	data.is_all_game_clear = m_system.GetAllGameClear();
+
+	m_save.SaveFile(data);
 }
 
 #ifndef IMGUI_DISABLE

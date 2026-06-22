@@ -157,6 +157,7 @@
     <ClCompile Include="Source\Object\Engine\FileCheck\FileCheck.cpp" />
     <ClCompile Include="Source\Object\Engine\GameSystem\GameSystem.cpp" />
     <ClCompile Include="Source\Object\Engine\ResourceSetting\ResourceSetting.cpp" />
+    <ClCompile Include="Source\Object\Engine\SaveGame\SaveGame.cpp" />
     <ClCompile Include="Source\Object\Player\Player.cpp" />
     <ClCompile Include="Source\Object\Player\PlayerCollide\PlayerCollide.cpp" />
     <ClCompile Include="Source\Object\Player\PlayerInput\PlayerInput.cpp" />
@@ -231,6 +232,7 @@
     <ClInclude Include="Source\Object\Engine\FileCheck\FileCheck.h" />
     <ClInclude Include="Source\Object\Engine\GameSystem\GameSystem.h" />
     <ClInclude Include="Source\Object\Engine\ResourceSetting\ResourceSetting.h" />
+    <ClInclude Include="Source\Object\Engine\SaveGame\SaveGame.h" />
     <ClInclude Include="Source\Object\Engine\Vector2Int\Vector2Int.h" />
     <ClInclude Include="Source\Object\Player\Player.h" />
     <ClInclude Include="Source\Object\Player\PlayerCollide\PlayerCollide.h" />

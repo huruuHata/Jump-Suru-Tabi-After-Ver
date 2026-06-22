@@ -12,6 +12,7 @@
 
 #include "..\\..\\Object\\Engine\\ResourceSetting\\ResourceSetting.h"
 #include "..\\..\\Object\\Engine\\GameSystem\\GameSystem.h"
+#include "..\\..\\Object\\Engine\\SaveGame\\SaveGame.h"
 #include "..\\..\\Object\\UI\\TitleUI\\TitleUI.h"
 
 class SceneTitle : public Scene
@@ -76,6 +77,7 @@ private:
 
 	ResourceSetting& m_setting = ResourceSetting::getInstance();
 	GameSystem& m_system = GameSystem::getInstance();
+	SaveGame& m_save = SaveGame::getInstance();
 
 	bool bDecide;
 };

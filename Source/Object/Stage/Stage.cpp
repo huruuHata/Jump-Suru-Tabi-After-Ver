@@ -31,9 +31,9 @@ void Stage::Initialize(const bool bBlack_mode, const bool bBuild_mode, const int
 	m_build_block_num = 0;
 }
 
-void Stage::Update(Engine* pEngine, const bool bBuild_mode)
+void Stage::Update(Engine* pEngine)
 {
-	if (bBuild_mode) StageBuild(pEngine);
+	StageBuild(pEngine);
 }
 
 void Stage::Draw(Engine* pEngine)

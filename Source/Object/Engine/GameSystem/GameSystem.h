@@ -21,8 +21,8 @@ public:
 	bool GetAllGameClear() const;
 
 	void SetGameMode(const bool bBlack_mode, const bool bBuild_mode);
-	void SetGameClearTrue();
-	void SetAllGameClearTrue();
+	void SetGameClear(const bool is_game_clear);
+	void SetAllGameClear(const bool is_all_game_clear);
 
 private:
 

@@ -12,6 +12,7 @@
 
 #include "..\\..\\Object\\Engine\\ResourceSetting\\ResourceSetting.h"
 #include "..\\..\\Object\\Engine\\GameSystem\\GameSystem.h"
+#include "..\\..\\Object\\Engine\\SaveGame\\SaveGame.h"
 #include "..\\..\\Object\\UI\\ClearUI\\ClearUI.h"
 
 class SceneClear : public Scene
@@ -59,6 +60,8 @@ public:
 	//=============================================================================
 	void PostEffectForBeginners();
 
+	void ClearDataSave();
+
 #ifndef IMGUI_DISABLE
 	//=============================================================================
 	// 日本語入力用
@@ -72,4 +75,5 @@ private:
 
 	ResourceSetting& m_setting = ResourceSetting::getInstance();
 	GameSystem& m_system = GameSystem::getInstance();
+	SaveGame& m_save = SaveGame::getInstance();
 };

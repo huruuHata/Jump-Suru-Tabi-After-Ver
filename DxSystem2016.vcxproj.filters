@@ -157,6 +157,9 @@
     <Filter Include="Object\Engine\GameSystem">
       <UniqueIdentifier>{4a479e3c-8db0-4f3b-a839-0b49127402df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Engine\SaveGame">
+      <UniqueIdentifier>{ce6be34e-912d-44ee-bec8-8c4e0494dadc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game.cpp">
@@ -365,6 +368,9 @@
     </ClCompile>
     <ClCompile Include="Source\Object\Engine\GameSystem\GameSystem.cpp">
       <Filter>Object\Engine\GameSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Object\Engine\SaveGame\SaveGame.cpp">
+      <Filter>Object\Engine\SaveGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -598,6 +604,9 @@
     </ClInclude>
     <ClInclude Include="Source\Object\Engine\GameSystem\GameSystem.h">
       <Filter>Object\Engine\GameSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object\Engine\SaveGame\SaveGame.h">
+      <Filter>Object\Engine\SaveGame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

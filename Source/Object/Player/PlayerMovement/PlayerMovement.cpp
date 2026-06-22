@@ -25,26 +25,29 @@ PlayerMovement::Output PlayerMovement::Update(const Field& field, BaseObject::Dr
 	if (key_flag & PlayerInput::UP_KEY)    m_look_dir = UP;
 	if (key_flag & PlayerInput::DOWN_KEY)  m_look_dir = DOWN;
 
-	if (key_flag & PlayerInput::LEFT_KEY)
+	if (key_flag & PlayerInput::LEFT_KEY) out.move_x -= 1;
+	if (key_flag & PlayerInput::RIGHT_KEY) out.move_x += 1;
+
+	if (out.move_x < 0)
 	{
 		m_look_dir = LEFT;
+
 		int next_x = (int)(draw.position.x - move_speed * delta_time);
 
-		if (CanMoveX(field, next_x, draw))
+		if (!CanMoveX(field, next_x, draw))
 		{
-			out.move_x = -1;
+			out.move_x = 0;
 		}
 	}
-
-	if (key_flag & PlayerInput::RIGHT_KEY)
+	else if(out.move_x > 0)
 	{
 		m_look_dir = RIGHT;
 
 		int next_x = (int)(draw.position.x + move_speed * delta_time);
 
-		if (CanMoveX(field, next_x + m_block_width - 1, draw))
+		if (!CanMoveX(field, next_x + m_block_width - 1, draw))
 		{
-			out.move_x = 1;
+			out.move_x = 0;
 		}
 	}
 
@@ -65,7 +68,7 @@ bool PlayerMovement::IsGameover() const
 
 bool PlayerMovement::CanMoveX(const Field& field, const int next_pixel_x, BaseObject::DrawSet& draw)
 {
-	int result = m_collide.CheckHorizontal(field, next_pixel_x, draw.position.y, draw.position.y + m_block_height - 1, m_block_width, m_block_height);
+	int result = m_collide.CheckHorizontal(field, next_pixel_x, draw.position.y + PlayerCollide::COLLIDE_MARGIN, draw.position.y + draw.draw_height - 1 - PlayerCollide::COLLIDE_MARGIN, m_block_width, m_block_height);
 
 	if (result >= Stage::CANT_PASS)
 	{

@@ -83,4 +83,6 @@ private:
 	ResourceSetting& m_setting = ResourceSetting::getInstance();
 	DeltaTime& m_delta = DeltaTime::getInstance();
 	GameSystem& m_system = GameSystem::getInstance();
+	
+	bool m_is_ready;
 };

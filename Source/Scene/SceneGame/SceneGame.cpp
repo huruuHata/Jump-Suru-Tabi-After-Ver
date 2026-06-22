@@ -46,6 +46,8 @@ void SceneGame::Start()
 	m_field = m_stage.GetMapArray();
 
 	m_pEngine->PlayBGM();
+
+	m_is_ready = false;
 }
 
 //=============================================================================
@@ -61,10 +63,11 @@ void SceneGame::Update()
 	if (m_system.GetBuildMode())
 	{
 		m_field = m_stage.GetMapArray();
+		m_stage.Update(m_pEngine);
 	}
 
-	m_stage.Update(m_pEngine, m_system.GetBuildMode());
-	m_player.Update(m_pEngine, m_field, m_system.GetBlackMode(), m_delta.GetDeltaTime());
+	//プレイヤーがロード中に動けてしまう事象への対策用(m_is_ready)
+	if(m_is_ready) m_player.Update(m_pEngine, m_field, m_system.GetBlackMode(), m_delta.GetDeltaTime());
 
 	if (m_player.IsGoal())
 	{
@@ -78,6 +81,7 @@ void SceneGame::Update()
 	if (m_system.GetBuildMode())
 	{
 		//ステージビルド説明表示非表示
+
 		if (m_pEngine->GetKeyStateSync(DIK_RETURN))
 		{
 			m_gameUI.SetDisplayBuildModeExplain(false);
@@ -92,6 +96,8 @@ void SceneGame::Update()
 			m_nowSceneData.Set(SCENE_TITLE);
 		}
 	}
+
+	m_is_ready = true;
 }
 
 //=============================================================================

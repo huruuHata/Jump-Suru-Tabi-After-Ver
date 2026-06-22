@@ -11,7 +11,7 @@ class Stage : public BaseObject
 public:
 
 	void Initialize(const bool bBlack_mode, const bool bBuild_mode, const int map_no);
-	void Update(Engine* pEngine, const bool bBuild_mode);
+	void Update(Engine* pEngine);
 	void Draw(Engine* pEngine);
 
 	Vector2Int GetStartPlayerPosition();

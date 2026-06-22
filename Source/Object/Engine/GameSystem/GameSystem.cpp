@@ -29,12 +29,12 @@ void GameSystem::SetGameMode(const bool bBlack_mode, const bool bBuild_mode)
 	m_bBuild_mode = bBuild_mode;
 }
 
-void GameSystem::SetGameClearTrue()
+void GameSystem::SetGameClear(const bool is_game_clear)
 {
-	m_is_gameclear = true;
+	m_is_gameclear = is_game_clear;
 }
 
-void GameSystem::SetAllGameClearTrue()
+void GameSystem::SetAllGameClear(const bool is_all_game_clear)
 {
-	m_is_all_gameclear = true;
+	m_is_all_gameclear = is_all_game_clear;
 }

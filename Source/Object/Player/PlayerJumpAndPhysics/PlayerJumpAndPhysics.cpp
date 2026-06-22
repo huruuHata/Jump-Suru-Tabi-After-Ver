@@ -123,7 +123,7 @@ void PlayerJumpAndPhysics::Falling(const Field& field, BaseObject::DrawSet& draw
 		m_bGrounded = true;
 	}
 
-	int result = m_collide.CheckVertical(field, draw.position.x, draw.position.x + m_block_width - 1, draw.position.y + m_block_height, m_block_width, m_block_height);
+	int result = m_collide.CheckVertical(field, draw.position.x + PlayerCollide::COLLIDE_MARGIN, draw.position.x + draw.draw_width - 1 - PlayerCollide::COLLIDE_MARGIN, draw.position.y + draw.draw_height - 1, m_block_width, m_block_height);
 
 	if (result == Stage::GOAL)
 	{
@@ -137,7 +137,7 @@ void PlayerJumpAndPhysics::UpCheck(const Field& field, BaseObject::DrawSet& draw
 
 	int map_y = Stage::ToMapY(draw.position.y, m_block_height);
 
-	int result = m_collide.CheckVertical(field, draw.position.x, draw.position.x + m_block_width - 1, draw.position.y, m_block_width, m_block_height);
+	int result = m_collide.CheckVertical(field, draw.position.x + PlayerCollide::COLLIDE_MARGIN, draw.position.x + draw.draw_width - 1 - PlayerCollide::COLLIDE_MARGIN, draw.position.y, m_block_width, m_block_height);
 
 	if (result >= Stage::CANT_PASS)
 	{
@@ -146,7 +146,7 @@ void PlayerJumpAndPhysics::UpCheck(const Field& field, BaseObject::DrawSet& draw
 			m_bGameover = true;
 		}
 
-		draw.position.y = (map_y + 1) * draw.draw_height;
+		draw.position.y = (map_y + 1) * m_block_height;
 		m_bJumping = false;
 	}
 }
@@ -155,7 +155,7 @@ bool PlayerJumpAndPhysics::CheckGround(const Field& field, int& ground_y, BaseOb
 {
 	int map_y = Stage::ToMapY(draw.position.y + m_block_height, m_block_height);
 
-	int result = m_collide.CheckVertical(field, draw.position.x, draw.position.x + m_block_width - 1, draw.position.y + m_block_height, m_block_width, m_block_height);
+	int result = m_collide.CheckVertical(field, draw.position.x + PlayerCollide::COLLIDE_MARGIN, draw.position.x + draw.draw_width - 1 - PlayerCollide::COLLIDE_MARGIN, draw.position.y + draw.draw_height, m_block_width, m_block_height);
 
 	if (result >= Stage::CANT_PASS)
 	{
@@ -165,9 +165,9 @@ bool PlayerJumpAndPhysics::CheckGround(const Field& field, int& ground_y, BaseOb
 		}
 
 		//着地
-		ground_y = (map_y - 1) * draw.draw_height;
+		ground_y = (map_y - 1) * m_block_height;
 		return true;
 	}
-
+	
 	return false;
 }

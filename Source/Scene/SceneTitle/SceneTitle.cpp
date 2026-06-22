@@ -40,6 +40,11 @@ void SceneTitle::Start()
 
 	m_pEngine->PlayBGM();
 
+	SaveGame::SaveData data = m_save.LoadFile();
+
+	m_system.SetGameClear(data.is_game_clear);
+	m_system.SetAllGameClear(data.is_all_game_clear);
+
 	m_gameData.map_no = 0;
 
 	bDecide = false;

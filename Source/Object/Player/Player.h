@@ -5,7 +5,6 @@
 #include "..\\Engine\\FileCheck\\FileCheck.h"
 
 #include "..\\Player\PlayerInput\PlayerInput.h"
-#include "..\\Player\PlayerCollide\PlayerCollide.h"
 #include "..\\Player\PlayerJumpAndPhysics\PlayerJumpAndPhysics.h"
 #include "..\\Player\PlayerMovement\PlayerMovement.h"
 
@@ -38,7 +37,6 @@ private:
 	PlayerInput m_input;
 	PlayerMovement m_movement;
 	PlayerJumpAndPhysics m_jump_physics;
-	PlayerCollide m_collide;
 
 	json m_data;
 };
