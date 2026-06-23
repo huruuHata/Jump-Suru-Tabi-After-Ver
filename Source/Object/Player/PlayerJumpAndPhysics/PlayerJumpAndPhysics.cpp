@@ -8,6 +8,7 @@ using namespace WindowSetting;
 PlayerJumpAndPhysics::PlayerJumpAndPhysics() : m_bGrounded(true)	
 	                                         , m_bJumping(false)
 	                                         , m_bGameover(false)
+											 , m_bGoal(false)
 {
 }
 
@@ -23,8 +24,6 @@ void PlayerJumpAndPhysics::Initialize(const json& data, const int block_width, c
 
 	m_block_width = block_width;
 	m_block_height = block_height;
-
-	m_bGoal = false;
 }
 
 void PlayerJumpAndPhysics::Update(const Field& field, BaseObject::DrawSet& draw, const float delta_time)

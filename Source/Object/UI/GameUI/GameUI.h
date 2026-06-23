@@ -13,7 +13,6 @@ public:
 	void Initialize(const bool is_black_mode, const bool is_build_mode);
 	void Draw(Engine* pEngine, const int map_no, const bool is_black_mode, const bool is_build_mode);
 
-	void SetMapNo(int map_no);
 	void SetDisplayBuildModeExplain(bool isDisplay);
 
 private:

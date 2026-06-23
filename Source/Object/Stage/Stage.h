@@ -1,5 +1,6 @@
 ﻿
-//ステージの初期化、
+//ステージの初期化、更新、描画を行う
+//ステージに関係するデータのゲッターあり
 
 #pragma once
 
@@ -12,12 +13,12 @@ class Stage : public BaseObject
 {
 public:
 
-	void Initialize(const bool is_black_mode, const bool is_Build_mode, const int map_no);
+	void Initialize(const bool is_black_mode, const bool is_build_mode, const int map_no);
 	void Update(Engine* pEngine);
 	void Draw(Engine* pEngine);
 
 	Vector2Int GetStartPlayerPosition() const;
-	Field GetMapArray();
+	Field GetMapArray() const;
 	
 	int GetBlockWidth() const;
 	int GetBlockHeight() const;

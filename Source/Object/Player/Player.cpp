@@ -26,7 +26,7 @@ Player::Player()
 	m_move_speed = m_data["Speed"]["Move"];
 }
 
-void Player::Initialize(const bool bBlack_mode, const int block_width, const int block_height, const Vector2Int start_pos)
+void Player::Initialize(const bool is_black_mode, const int block_width, const int block_height, const Vector2Int start_pos)
 {
 	m_draw.position = Vector2Int(start_pos.x * m_draw.draw_width, start_pos.y * m_draw.draw_height);
 
@@ -57,7 +57,7 @@ bool Player::IsGameover() const
 	return m_movement.IsGameover() || m_jump_physics.IsGameover();
 }
 
-void Player::Move(const Field& field, float delta_time)
+void Player::Move(const Field& field, const float delta_time)
 {
 	auto move_result = m_movement.Update(field, m_draw, m_move_speed, m_input.GetKeyFlag(), delta_time);
 
@@ -67,7 +67,7 @@ void Player::Move(const Field& field, float delta_time)
 	m_draw.position.x += (int)((move_result.move_x * m_move_speed) * delta_time);
 }
 
-void Player::JumpAndPhysics(Engine * pEngine, const Field& field, const bool is_black_mode, float delta_time)
+void Player::JumpAndPhysics(Engine * pEngine, const Field& field, const bool is_black_mode, const float delta_time)
 {
 	if (m_input.GetKeyFlag() & PlayerInput::JUMP_KEY)
 	{

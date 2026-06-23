@@ -203,9 +203,11 @@ void SceneClear::ProcessBlackModeClear()
 	{
 	case ClearUI::State::StageClear:
 
-		m_system.SetAllGameClear(true);
-
-		ClearDataSave();
+		if (!m_system.GetAllGameClear())
+		{
+			m_system.SetAllGameClear(true);
+			ClearDataSave();
+		}
 
 		m_clearUI.ChangeState(ClearUI::State::GameClear);
 

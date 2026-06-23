@@ -56,7 +56,7 @@ Vector2Int Stage::GetStartPlayerPosition() const
 	return m_start_pos;
 }
 
-Field Stage::GetMapArray()
+Field Stage::GetMapArray() const
 {
 	Field field{};
 
@@ -82,11 +82,11 @@ int Stage::GetBlockHeight() const
 }
 
 //ピクセル座標をマップ座標に変換
-int Stage::ToMapX(int pixel_x, int block_width)
+int Stage::ToMapX(const int pixel_x, const int block_width)
 {
 	return pixel_x / block_width;
 }
-int Stage::ToMapY(int pixel_y, int block_height)
+int Stage::ToMapY(const int pixel_y, const int block_height)
 {
 	return pixel_y / block_height;
 }
@@ -175,7 +175,7 @@ void Stage::StageBuild(Engine* pEngine)
 		{
 			m_map_array[my][mx] = m_build_block_num;
 		}
-		else if (m_map_array[my][mx] == m_build_block_num)
+		else
 		{
 			m_map_array[my][mx] = 0;
 		}

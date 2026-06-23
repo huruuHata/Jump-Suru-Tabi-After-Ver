@@ -1,5 +1,5 @@
 ﻿
-//プレイヤーの動きを他クラスからもらい、反映する
+//Playerの各サブクラスから処理結果を受け取り、座標・テクスチャに反映する
 
 #pragma once
 
@@ -16,7 +16,7 @@ public:
 
 	Player();
 
-	void Initialize(const bool bBlack_mode, const int block_width, const int block_height, const Vector2Int start_pos);
+	void Initialize(const bool is_black_mode, const int block_width, const int block_height, const Vector2Int start_pos);
 	void Update(Engine* pEngine, const Field& field, const bool is_black_mode, const float delta_time);
 
 	bool IsGoal() const;
@@ -24,8 +24,8 @@ public:
 
 private:
 
-	void Move(const Field& field, float delta_time);
-	void JumpAndPhysics(Engine* pEngine, const Field& field, const bool is_black_mode, float delta_time);
+	void Move(const Field& field, const float delta_time);
+	void JumpAndPhysics(Engine* pEngine, const Field& field, const bool is_black_mode, const float delta_time);
 
 	std::string m_white_texture;
 	std::string m_black_texture;
