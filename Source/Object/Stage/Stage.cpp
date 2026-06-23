@@ -1,5 +1,4 @@
-﻿
-#define _USING_V110_SDK71_ 1
+﻿#define _USING_V110_SDK71_ 1
 
 #include "Stage.h"
 
@@ -21,9 +20,9 @@ void Stage::Initialize(const bool is_black_mode, const bool is_build_mode, const
 	m_draw.image_height = data["Image"]["Height"];
 	m_draw.draw_width = data["Draw"]["Width"];
 	m_draw.draw_height = data["Draw"]["Height"];
-	
-    m_draw.filename = is_black_mode ? data["Texture"]["Black"]:
-								    data["Texture"]["White"];
+
+	m_draw.filename = is_black_mode ? data["Texture"]["Black"] :
+		data["Texture"]["White"];
 
 	m_draw.position = Vector2Int(0, 0);
 	m_draw.texture_num = 0;
@@ -33,7 +32,8 @@ void Stage::Initialize(const bool is_black_mode, const bool is_build_mode, const
 
 void Stage::Update(Engine* pEngine)
 {
-	StageBuild(pEngine);
+	BuildInput input = ReadBuildInput(pEngine);
+	ApplyBuildInput(input);
 }
 
 void Stage::Draw(Engine* pEngine)
@@ -62,7 +62,7 @@ Field Stage::GetMapArray() const
 
 	for (int i = 0; i < m_block_row; i++)
 	{
-		for (int j = 0; j < m_block_col; j++) 
+		for (int j = 0; j < m_block_col; j++)
 		{
 			field.map[i][j] = m_map_array[i][j];
 		}
@@ -101,7 +101,7 @@ void Stage::FileSetting(json& data, const bool is_black_mode, const bool is_buil
 		if (!is_black_mode)
 		{
 			//表面マップ
-			filename = data["WhiteStage"][map_no ];
+			filename = data["WhiteStage"][map_no];
 		}
 		else
 		{
@@ -125,7 +125,7 @@ void Stage::FileSetting(json& data, const bool is_black_mode, const bool is_buil
 	ifs_map >> m_start_pos.x;
 	ifs_map >> m_start_pos.y;
 
-	for (int i = 0; i < m_block_row; i++) 
+	for (int i = 0; i < m_block_row; i++)
 	{
 		for (int j = 0; j < m_block_col; j++)
 		{
@@ -136,48 +136,55 @@ void Stage::FileSetting(json& data, const bool is_black_mode, const bool is_buil
 	ifs_map.close();
 }
 
-//ステージビルドモード用
-void Stage::StageBuild(Engine* pEngine)
+// ビルドモードの入力を読み取る
+Stage::BuildInput Stage::ReadBuildInput(Engine* pEngine) const
 {
+	BuildInput input{};
+	input.selected_block = -1;
+
+	// ０キーで消しゴム（ブロック番号0）を選択
 	if (pEngine->GetKeyStateSync(DIK_0))
 	{
-		m_build_block_num = 0;
+		input.selected_block = 0;
 	}
 
-	//１～５までのキー入力に対応
+	// １～５キーでブロックの種類を選択
 	for (int i = 0; i <= 4; i++)
 	{
 		if (pEngine->GetKeyStateSync((BYTE)(DIK_1 + i)))
 		{
-			m_build_block_num = i + 1;
+			input.selected_block = i + 1;
 			break;
 		}
 	}
 
-	if (pEngine->GetMouseButtonSync(DIK_LBUTTON)) 
+	input.is_clicking = pEngine->GetMouseButtonSync(DIK_LBUTTON);
+
+	POINT point = pEngine->GetMousePosition();
+	input.mouse_x = point.x;
+	input.mouse_y = point.y;
+
+	return input;
+}
+
+// 読み取った入力をマップ配列に反映する
+void Stage::ApplyBuildInput(const BuildInput& input)
+{
+	// ブロック選択が変わっていれば更新
+	if (input.selected_block >= 0)
 	{
-		POINT point = pEngine->GetMousePosition();
-
-		int mx = point.x / m_draw.draw_width;
-		int my = point.y / m_draw.draw_height;
-
-		if (mx < 0 || mx >= m_block_col)
-		{
-			return;
-		}
-
-		if (my < 0 || my >= m_block_row)
-		{
-			return;
-		}
-
-		if (m_map_array[my][mx] != m_build_block_num)
-		{
-			m_map_array[my][mx] = m_build_block_num;
-		}
-		else
-		{
-			m_map_array[my][mx] = 0;
-		}
+		m_build_block_num = input.selected_block;
 	}
+
+	if (!input.is_clicking) return;
+
+	int mx = input.mouse_x / m_draw.draw_width;
+	int my = input.mouse_y / m_draw.draw_height;
+
+	if (mx < 0 || mx >= m_block_col) return;
+	if (my < 0 || my >= m_block_row) return;
+
+	// 同じブロックをクリックしたら消去、違うブロックなら配置
+	m_map_array[my][mx] = (m_map_array[my][mx] != m_build_block_num)
+		? m_build_block_num : 0;
 }

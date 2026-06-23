@@ -19,7 +19,7 @@ public:
 
 	Vector2Int GetStartPlayerPosition() const;
 	Field GetMapArray() const;
-	
+
 	int GetBlockWidth() const;
 	int GetBlockHeight() const;
 
@@ -38,8 +38,20 @@ public:
 
 private:
 
+	// ビルドモードの入力状態をまとめた構造体
+	struct BuildInput
+	{
+		int  selected_block; // 選択中のブロック番号
+		bool is_clicking;    // マウス左クリック中か
+		int  mouse_x;        // マウスのピクセル座標 X
+		int  mouse_y;        // マウスのピクセル座標 Y
+	};
+
 	void FileSetting(json& data, const bool is_black_mode, const bool is_build_mode, const int map_no);
-	void StageBuild(Engine* pEngine);
+
+	BuildInput ReadBuildInput(Engine* pEngine) const;
+
+	void ApplyBuildInput(const BuildInput& input);
 
 	int m_block_row;
 	int m_block_col;
@@ -54,4 +66,3 @@ private:
 
 	int m_map_array[MAP_ROW][MAP_COL];
 };
-

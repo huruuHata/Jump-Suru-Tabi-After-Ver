@@ -47,5 +47,7 @@ private:
 	int m_jump_power_white;
 	int m_jump_power_black;
 
+	int m_fall_death_y;
+
 	PlayerCollide m_collide;
 };

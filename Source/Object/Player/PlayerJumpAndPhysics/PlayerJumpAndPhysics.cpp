@@ -19,6 +19,8 @@ void PlayerJumpAndPhysics::Initialize(const json& data)
 	m_jump_power_white = data["JumpPower"]["White"];
 	m_jump_power_black = data["JumpPower"]["Black"];
 
+	m_fall_death_y = data["FallDeathY"];
+
 	m_jump_power = 0;
 	m_save_height = 0;
 }
@@ -100,7 +102,7 @@ void PlayerJumpAndPhysics::Falling(const Field& field, BaseObject::DrawSet& draw
 {
 	draw.position.y += (int)(m_jump_speed * delta_time);
 
-	if (draw.position.y > WINDOW_HEIGHT - draw.draw_height)
+	if (draw.position.y > m_fall_death_y)
 	{
 		m_is_gameover = true;
 		return;

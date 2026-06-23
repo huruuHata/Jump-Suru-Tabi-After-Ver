@@ -28,6 +28,8 @@
 
   "JumpPower": {
     "White": 8,
-    "Black":  24
-  }
+    "Black": 24
+  },
+
+  "FallDeathY":  512
 }
