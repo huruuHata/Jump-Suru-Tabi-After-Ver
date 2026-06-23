@@ -42,7 +42,7 @@ private:
 
 	int m_jump_speed;
 	int m_jump_power;
-	int m_save_height;
+	int m_save_height; //ジャンプ開始時のY座標
 
 	int m_jump_power_white;
 	int m_jump_power_black;

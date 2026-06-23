@@ -55,7 +55,6 @@ private:
 
 	int m_block_row;
 	int m_block_col;
-	int m_map_chip_col;
 
 	int m_build_block_num;
 

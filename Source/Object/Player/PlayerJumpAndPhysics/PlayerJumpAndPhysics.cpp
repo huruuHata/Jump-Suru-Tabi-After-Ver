@@ -64,6 +64,7 @@ void PlayerJumpAndPhysics::JumpCheck(Engine* pEngine, BaseObject::DrawSet& draw,
 
 		pEngine->PlaySE(SE_JUMP);
 
+		//白と黒のモードによって伸び幅が違う(難易度調整)
 		m_jump_power += is_black_mode ? m_jump_power_black : m_jump_power_white;
 	}
 }

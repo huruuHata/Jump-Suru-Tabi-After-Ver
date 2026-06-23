@@ -12,7 +12,6 @@ void Stage::Initialize(const bool is_black_mode, const bool is_build_mode, const
 
 	m_block_row = data["Block"]["Row"];
 	m_block_col = data["Block"]["Col"];
-	m_map_chip_col = data["Block"]["ChipCol"];
 
 	FileSetting(data, is_black_mode, is_build_mode, map_no);
 
@@ -185,6 +184,5 @@ void Stage::ApplyBuildInput(const BuildInput& input)
 	if (my < 0 || my >= m_block_row) return;
 
 	// 同じブロックをクリックしたら消去、違うブロックなら配置
-	m_map_array[my][mx] = (m_map_array[my][mx] != m_build_block_num)
-		? m_build_block_num : 0;
+	m_map_array[my][mx] = (m_map_array[my][mx] != m_build_block_num) ? m_build_block_num : 0;
 }

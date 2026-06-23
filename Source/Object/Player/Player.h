@@ -36,6 +36,6 @@ private:
 	PlayerMovement m_movement;
 	PlayerJumpAndPhysics m_jump_physics;
 
-	json m_data;
+	json m_data; //InitializeでJumpAndPhysicsに渡す必要があるため保存する用
 };
 
