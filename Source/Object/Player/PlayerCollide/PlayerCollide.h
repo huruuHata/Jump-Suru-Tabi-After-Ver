@@ -16,5 +16,5 @@ public:
 	//縦方向の当たり判定
 	int CheckVertical(const Field& field, int left_x, int right_x, int pixel_y, int block_width, int block_height) const;
 
-	static const int COLLIDE_MARGIN = 4; //プレイヤーの当たり判定の余裕
+	static const int COLLIDE_MARGIN = 4; //プレイヤーの当たり判定の余裕(PlayerのSpeedより１大きい数字にしてPixel単位でのずれをカバーする)
 };

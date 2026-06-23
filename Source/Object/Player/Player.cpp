@@ -32,7 +32,7 @@ void Player::Initialize(const bool is_black_mode, const int block_width, const i
 
 	m_draw.filename = is_black_mode ? m_black_texture : m_white_texture;
 
-	m_jump_physics.Initialize(m_data, block_width, block_height);
+	m_jump_physics.Initialize(m_data);
 
 	m_data.clear();
 }
@@ -57,7 +57,7 @@ bool Player::IsGameover() const
 
 void Player::Move(const Field& field, const int block_width, const int block_height, const float delta_time)
 {
-	auto move_result = m_movement.Update(field, m_draw, m_move_speed, m_input.GetKeyFlag(), block_width, block_height, delta_time);
+	auto move_result = m_movement.Update(field, m_draw, m_move_speed, block_width, block_height, m_input.GetKeyFlag(), delta_time);
 
 	//向く方向を変える
 	m_draw.texture_num = move_result.look_dir;

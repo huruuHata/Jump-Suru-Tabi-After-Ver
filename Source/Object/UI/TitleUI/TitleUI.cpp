@@ -37,27 +37,27 @@ void TitleUI::Update()
 
 void TitleUI::Draw(Engine* pEngine, const bool is_game_all_clear)
 {
-	BaseUI::Draw(pEngine, m_back);
+	DrawUI(pEngine, m_back);
 
 	DrawCharacters(pEngine);
 	DrawTitle(pEngine);
 
 	if (is_game_all_clear)
 	{
-		BaseUI::Draw(pEngine, m_congratulations);
+		DrawUI(pEngine, m_congratulations);
 	}
 }
 
 void TitleUI::DrawCharacters(Engine* pEngine)
 {
-	BaseUI::Draw(pEngine, m_white_chara);
-	BaseUI::Draw(pEngine, m_black_chara);
+	DrawUI(pEngine, m_white_chara);
+	DrawUI(pEngine, m_black_chara);
 }
 
 void TitleUI::DrawTitle(Engine* pEngine)
 {
-	BaseUI::Draw(pEngine, m_start);
-	BaseUI::Draw(pEngine, m_title_board);
+	DrawUI(pEngine, m_start);
+	DrawUI(pEngine, m_title_board);
 }
 
 //看板降下

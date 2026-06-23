@@ -18,7 +18,7 @@ public:
 	void Draw(Engine* pEngine);
 
 	Vector2Int GetStartPlayerPosition() const;
-	Field& GetMapArray() const;
+	Field GetMapArray() const;
 	
 	int GetBlockWidth() const;
 	int GetBlockHeight() const;

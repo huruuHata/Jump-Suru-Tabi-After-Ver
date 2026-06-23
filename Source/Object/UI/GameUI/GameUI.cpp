@@ -52,11 +52,11 @@ void GameUI::Draw(Engine* pEngine, const int map_no, const bool is_black_mode, c
 
 void GameUI::DrawBuildMode(Engine* pEngine)
 {
-	BaseUI::Draw(pEngine, m_build_key_explain);
+	DrawUI(pEngine, m_build_key_explain);
 
 	if (m_is_build_explain_visible)
 	{
-		BaseUI::Draw(pEngine, m_build_explain);
+		DrawUI(pEngine, m_build_explain);
 	}
 }
 
@@ -66,16 +66,16 @@ void GameUI::DrawNormalMode(Engine* pEngine, const int map_no)
 	{
 	case FIRST_STAGE:
 
-		BaseUI::Draw(pEngine, m_fall_explain);
-		BaseUI::Draw(pEngine, m_goal_explain);
-		BaseUI::Draw(pEngine, m_key_explain);
-		BaseUI::Draw(pEngine, m_jump_explain);
+		DrawUI(pEngine, m_fall_explain);
+		DrawUI(pEngine, m_goal_explain);
+		DrawUI(pEngine, m_key_explain);
+		DrawUI(pEngine, m_jump_explain);
 
 		break;
 
 	case HIT_STAGE:
 
-		BaseUI::Draw(pEngine, m_hit_explain);
+		DrawUI(pEngine, m_hit_explain);
 
 		break;
 
@@ -88,7 +88,7 @@ void GameUI::DrawBlackMode(Engine* pEngine, const int map_no)
 {
 	if (map_no == LAST_STAGE)
 	{
-		BaseUI::Draw(pEngine, m_congratulations);
+		DrawUI(pEngine, m_congratulations);
 	}
 }
 

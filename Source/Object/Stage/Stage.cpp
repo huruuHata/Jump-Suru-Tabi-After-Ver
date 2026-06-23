@@ -56,7 +56,7 @@ Vector2Int Stage::GetStartPlayerPosition() const
 	return m_start_pos;
 }
 
-Field& Stage::GetMapArray() const
+Field Stage::GetMapArray() const
 {
 	Field field{};
 
@@ -147,9 +147,9 @@ void Stage::StageBuild(Engine* pEngine)
 	//１～５までのキー入力に対応
 	for (int i = 0; i <= 4; i++)
 	{
-		if (pEngine->GetKeyStateSync((BYTE)(DIK_1 + i - 1)))
+		if (pEngine->GetKeyStateSync((BYTE)(DIK_1 + i)))
 		{
-			m_build_block_num = i;
+			m_build_block_num = i + 1;
 			break;
 		}
 	}

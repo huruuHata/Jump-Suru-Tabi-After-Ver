@@ -29,8 +29,8 @@ void GameoverUI::Update()
 
 void GameoverUI::Draw(Engine * pEngine)
 {
-	BaseUI::Draw(pEngine, m_gameover_back);
-	BaseUI::Draw(pEngine, m_gameover);
+	DrawUI(pEngine, m_gameover_back);
+	DrawUI(pEngine, m_gameover);
 }
 
 bool GameoverUI::IsFadeInFinish() const

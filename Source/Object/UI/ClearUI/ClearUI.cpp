@@ -119,24 +119,24 @@ void ClearUI::FadeIn()
 
 void ClearUI::DrawStageClear(Engine* pEngine)
 {
-	BaseUI::Draw(pEngine, m_stage_clear_back);
-	BaseUI::Draw(pEngine, m_stage_clear_telop);
+	DrawUI(pEngine, m_stage_clear_back);
+	DrawUI(pEngine, m_stage_clear_telop);
 }
 
 void ClearUI::DrawNextStage(Engine* pEngine)
 {
-	BaseUI::Draw(pEngine, m_next_stage);
+	DrawUI(pEngine, m_next_stage);
 }
 
 void ClearUI::DrawGameClear(Engine* pEngine)
 {
-	BaseUI::Draw(pEngine, m_game_clear_back);
-	BaseUI::Draw(pEngine, m_game_clear);
+	DrawUI(pEngine, m_game_clear_back);
+	DrawUI(pEngine, m_game_clear);
 }
 
 void ClearUI::DrawNewMode(Engine* pEngine)
 {
-	BaseUI::Draw(pEngine, m_new_mode);
+	DrawUI(pEngine, m_new_mode);
 }
 
 

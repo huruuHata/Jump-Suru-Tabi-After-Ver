@@ -17,7 +17,7 @@ void BaseUI::InitializeImage(UIData& ui_data, json& data, const std::string& key
 	ui_data.draw_pos = Vector2Int(data[key]["Position"]["x"], data[key]["Position"]["y"]);
 }
 
-void BaseUI::Draw(Engine* pEngine, const UIData& ui)
+void BaseUI::DrawUI(Engine* pEngine, const UIData& ui)
 {
 	RECT sour, dest;
 

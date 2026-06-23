@@ -15,7 +15,7 @@ public:
 
 	PlayerJumpAndPhysics();
 
-	void Initialize(const json& data, const int block_width, const int block_height);
+	void Initialize(const json& data);
 
 	void Update(const Field& field, BaseObject::DrawSet& draw, const int block_width, const int block_height, const float delta_time);
 

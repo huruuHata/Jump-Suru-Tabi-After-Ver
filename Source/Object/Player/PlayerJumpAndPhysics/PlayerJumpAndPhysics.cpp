@@ -12,7 +12,7 @@ PlayerJumpAndPhysics::PlayerJumpAndPhysics() : m_is_grounded(true)
 {
 }
 
-void PlayerJumpAndPhysics::Initialize(const json& data, const int block_width, const int block_height)
+void PlayerJumpAndPhysics::Initialize(const json& data)
 {
 	m_jump_speed = data["Speed"]["Jump"];
 
