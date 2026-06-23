@@ -18,13 +18,13 @@ public:
 	void Draw(Engine* pEngine);
 
 	Vector2Int GetStartPlayerPosition() const;
-	Field GetMapArray() const;
+	Field& GetMapArray() const;
 	
 	int GetBlockWidth() const;
 	int GetBlockHeight() const;
 
-	static int ToMapX(int pixel_x, int block_width);
-	static int ToMapY(int pixel_y, int block_height);
+	static int ToMapX(const int pixel_x, const int block_width);
+	static int ToMapY(const int pixel_y, const int block_height);
 
 	enum
 	{

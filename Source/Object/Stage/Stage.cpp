@@ -56,7 +56,7 @@ Vector2Int Stage::GetStartPlayerPosition() const
 	return m_start_pos;
 }
 
-Field Stage::GetMapArray() const
+Field& Stage::GetMapArray() const
 {
 	Field field{};
 

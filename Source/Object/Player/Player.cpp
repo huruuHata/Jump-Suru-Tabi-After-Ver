@@ -30,21 +30,19 @@ void Player::Initialize(const bool is_black_mode, const int block_width, const i
 {
 	m_draw.position = Vector2Int(start_pos.x * m_draw.draw_width, start_pos.y * m_draw.draw_height);
 
-	m_draw.filename = bBlack_mode ? m_black_texture : m_white_texture;
+	m_draw.filename = is_black_mode ? m_black_texture : m_white_texture;
 
-	m_block_width = block_width;
-	m_block_height = block_height;
+	m_jump_physics.Initialize(m_data, block_width, block_height);
 
-	m_jump_physics.Initialize(m_data, m_block_width, m_block_height);
-	m_movement.Initialize(m_block_width, m_block_height);
+	m_data.clear();
 }
 
-void Player::Update(Engine * pEngine, const Field& field, const bool is_black_mode, const float delta_time)
+void Player::Update(Engine * pEngine, const Field& field, const bool is_black_mode, const int block_width, const int block_height, const float delta_time)
 {
 	m_input.Update(pEngine);
 
-	Move(field, delta_time);
-	JumpAndPhysics(pEngine, field, is_black_mode, delta_time);
+	Move(field, block_width, block_height, delta_time);
+	JumpAndPhysics(pEngine, field, is_black_mode, block_width, block_height, delta_time);
 }
 
 bool Player::IsGoal() const
@@ -57,9 +55,9 @@ bool Player::IsGameover() const
 	return m_movement.IsGameover() || m_jump_physics.IsGameover();
 }
 
-void Player::Move(const Field& field, const float delta_time)
+void Player::Move(const Field& field, const int block_width, const int block_height, const float delta_time)
 {
-	auto move_result = m_movement.Update(field, m_draw, m_move_speed, m_input.GetKeyFlag(), delta_time);
+	auto move_result = m_movement.Update(field, m_draw, m_move_speed, m_input.GetKeyFlag(), block_width, block_height, delta_time);
 
 	//向く方向を変える
 	m_draw.texture_num = move_result.look_dir;
@@ -67,13 +65,13 @@ void Player::Move(const Field& field, const float delta_time)
 	m_draw.position.x += (int)((move_result.move_x * m_move_speed) * delta_time);
 }
 
-void Player::JumpAndPhysics(Engine * pEngine, const Field& field, const bool is_black_mode, const float delta_time)
+void Player::JumpAndPhysics(Engine * pEngine, const Field& field, const bool is_black_mode, const int block_width, const int block_height, const float delta_time)
 {
 	if (m_input.GetKeyFlag() & PlayerInput::JUMP_KEY)
 	{
 		m_jump_physics.JumpCheck(pEngine, m_draw, is_black_mode);
 	}
 
-	m_jump_physics.Update(field, m_draw, delta_time);
+	m_jump_physics.Update(field, m_draw, block_width, block_height, delta_time);
 }
 

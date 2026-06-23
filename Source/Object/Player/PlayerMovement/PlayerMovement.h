@@ -21,8 +21,7 @@ public:
 		int look_dir;
 	};
 
-	void Initialize(const int block_width, const int block_height);
-	Output Update(const Field& field, BaseObject::DrawSet& draw, const int move_speed,  const unsigned int key_flag, const float delta_time);
+	Output Update(const Field& field, BaseObject::DrawSet& draw, const int move_speed,  const int block_width, const int block_height, const unsigned int key_flag, const float delta_time);
 
 	bool IsGoal() const;
 	bool IsGameover() const;
@@ -37,15 +36,12 @@ private:
 		DOWN,
 	};
 
-	bool CanMoveX(const Field& field, const int next_pixel_x, BaseObject::DrawSet& draw);
+	bool CanMoveX(const Field& field, BaseObject::DrawSet& draw, const int next_pixel_x, const int block_width, const int block_height);
 
-	bool m_bGoal;
-	bool m_bGameover;
+	bool m_is_goal;
+	bool m_is_gameover;
 
 	int m_look_dir;
-
-	int m_block_width;
-	int m_block_height;
 
 	PlayerCollide m_collide;
 };

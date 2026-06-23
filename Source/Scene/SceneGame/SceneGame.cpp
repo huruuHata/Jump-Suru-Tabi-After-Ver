@@ -92,7 +92,7 @@ void SceneGame::UpdatePlayer()
 		return;
 	}
 
-	m_player.Update(m_pEngine, m_field, m_system.GetBlackMode(), m_delta.GetDeltaTime());
+	m_player.Update(m_pEngine, m_field, m_system.GetBlackMode(), m_stage.GetBlockWidth(), m_stage.GetBlockHeight(), m_delta.GetDeltaTime());
 }
 
 //=============================================================================
